@@ -1,69 +1,63 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+#root,body,html {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #c7c6db;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.hr-bold {
+  height: 5px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.px-border {
+ border: 1px solid rgb(124, 96, 96) !important;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.login{
+ width: 450px;
+ height: 500px; 
+}
+
+.login-shadow {
+  box-shadow: 11px 2px 21px 26px #e8e1e1;
+}
+
+.sidebar {
+  background-color: white;
+}
+
+.sidebar-tab {
+  color: #b9b8b8;
+}
+
+.sidebar-tab:hover {
+  color: #df7e7e;
+  background-color: rgb(209, 209, 209);
+}
+
+.sidebar-tab-active {
+  background-color: #df7e7e;
+  color: white !important;
+}
+
+.pwd-show-btn {
+  top: 13px;
+  right: 10px;
+}
+
+.outline-none {
+  outline: none;
+}
+
+.breadcrumb-item-color {
+  color: #b9b8b8;
+}
+
+.border-1px {
+  border: 1px solid grey;
+}
+
+.profile-img {
+  backdrop-filter: hue-rotate(90deg);
 }
