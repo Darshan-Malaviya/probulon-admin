@@ -4,7 +4,7 @@ import { FaSortAmountUp } from "react-icons/fa";
 
 const DataTable = ({ data, columns, handleSelectedRow}) => {
   const [filterText, setFilterText] = useState("");
-
+  const [userData,setUserDAta]=useState([])
   return (
     <Table
       columns={columns}
@@ -20,6 +20,9 @@ const DataTable = ({ data, columns, handleSelectedRow}) => {
       selectableRows
       onSelectedRowsChange={handleSelectedRow}
     />
+    // {userData?.map((user,index)=>{
+
+    // })}
   );
 };
 

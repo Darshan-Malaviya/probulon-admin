@@ -13,9 +13,8 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import adddata from "./Fuatures/UserSlice"
 import * as Yup from "yup";
-// import UserDetails from "./UserDetails";
-// import UserId from "./UserId";
-// import Other from "./Other";
+
+
 const AddSteper = () => {
   const [page, setPage] = useState(0);
   const dispatch = useDispatch()
@@ -49,11 +48,11 @@ const AddSteper = () => {
     validationSchema: Yup.object({
       firstName: Yup.string()
         .min(2, "Too Short!")
-        .max(50, "Too Long!")
+        .max(30, "Too Long!")
         .required("First Name is required"),
       lastName: Yup.string()
         .min(2, "Too Short!")
-        .max(50, "Too Long!")
+        .max(30, "Too Long!")
         .required("LastName is required"),
       clientId: Yup.string().required("ClientId is required"),
       typeOfCollaborator: Yup.string().required(
@@ -91,14 +90,14 @@ const AddSteper = () => {
   });
 
   const Formtitle = ["User Details", "User Device Informaion", "Other"];
-  const renderError = (field) =>
+  const renderError = (field) => 
     formik.errors[field] ? (
       <div className="error ms-2 text-danger">{formik.errors[field]}</div>
     ) : null;
   const UserDetails = () => {
     return (
       <div className="ms-5">
-        <Form.Group controlId="firstName" className="d-flex flex-row m-2">
+        <Form.Group  className="d-flex flex-row m-2">
           <Form.Label className="col-3 w-25">First Name :</Form.Label>
           <Form.Control
             type="text"
@@ -107,6 +106,7 @@ const AddSteper = () => {
             name="firstName"
             value={formik.values.firstName}
             onChange={formik.handleChange}
+            required
           />
         </Form.Group>
         {renderError("firstName")}
@@ -477,7 +477,7 @@ const AddSteper = () => {
             <Button
               variant="danger"
               className=" ms-5 mt-3"
-              onClick={handlePrev}
+              onClick={()=>handlePrev()}
             >
               <GrFormPrevious /> Prev Form
             </Button>
@@ -487,7 +487,7 @@ const AddSteper = () => {
             <Button
               variant="primary"
               className="mt-3  ms-5"
-              onClick={handleNext}
+              onClick={()=>handleNext()}
             >
               Next Form <MdNavigateNext />
             </Button>
@@ -495,7 +495,7 @@ const AddSteper = () => {
             <Button variant="primary" className=" mt-3  ms-5" type="submit">
               Submit
             </Button>
-          )}
+          ) }
         </Form>
       </CardBody>
     </Card>

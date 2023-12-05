@@ -92,7 +92,7 @@ const AddClientSteper = () => {
     formik.errors[field] ? (
       <div className="error ms-2 text-danger">{formik.errors[field]}</div>
     ) : null;
-  const UserDetails = () => {
+  const ClientDetails = () => {
     return (
       <div className="ms-5">
         <Form.Group controlId="firstName" className="d-flex flex-row m-2">
@@ -202,7 +202,7 @@ const AddClientSteper = () => {
     );
   };
 
-  const UserId = () => {
+  const ClientId = () => {
     return (
       <div className="ms-5">
         <Form.Group controlId="clientId" className="d-flex flex-row m-2">
@@ -449,9 +449,9 @@ const AddClientSteper = () => {
 
   const PageDisplay = () => {
     if (page === 0) {
-      return <UserDetails />;
+      return <ClientDetails />;
     } else if (page === 1) {
-      return <UserId />;
+      return <ClientId />;
     } else {
       return <Other />;
     }
@@ -470,7 +470,7 @@ const AddClientSteper = () => {
       <CardBody>
         <Form action="POST" onSubmit={formik.handleSubmit}>
           {PageDisplay()}
-          {page == 0 ? null : (
+          {page === 0 ? null : (
             <Button
               variant="danger"
               className=" ms-5 mt-3"
