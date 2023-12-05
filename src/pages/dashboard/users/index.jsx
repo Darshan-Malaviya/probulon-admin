@@ -51,7 +51,7 @@ const Users = () => {
         </ModalBody>
       </Modal>
       <Card className="m-2 h-100 border">
-        <CardHeader>Users</CardHeader>
+        <CardHeader className="fw-bold">Users</CardHeader>
         <CardBody>
           <div className="d-flex flex-row justify-content-between ">
             <input
