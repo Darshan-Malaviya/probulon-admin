@@ -9,16 +9,16 @@ import {
 } from "react-bootstrap";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-// import adddata from "./Fuatures/UserSlice"
+import adddata from "./Fuatures/UserSlice"
 import * as Yup from "yup";
 // import UserDetails from "./UserDetails";
 // import UserId from "./UserId";
 // import Other from "./Other";
 const AddSteper = () => {
   const [page, setPage] = useState(0);
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -86,7 +86,7 @@ const AddSteper = () => {
     }),
     onSubmit: (value) => {
       console.log(value);
-      // dispatch(adddata(JSON.stringify(value)))
+      dispatch(adddata(JSON.stringify(value)))
     },
   });
 
