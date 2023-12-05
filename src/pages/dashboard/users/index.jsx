@@ -65,6 +65,7 @@ const Users = () => {
               <Button className="bg-success mx-2 border-0">Active</Button>
               <Button className="bg-danger border-0">Deleted</Button>
             </div>
+            
             <Button className="float-end" onClick={() => navigate('/dashboard/users/add')}>
               Add User
             </Button>
