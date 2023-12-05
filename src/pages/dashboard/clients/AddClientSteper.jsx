@@ -13,9 +13,6 @@ import { GrFormPrevious } from "react-icons/gr";
 import { useFormik } from "formik";
 // import adddata from "./Fuatures/UserSlice"
 import * as Yup from "yup";
-// import UserDetails from "./UserDetails";
-// import UserId from "./UserId";
-// import Other from "./Other";
 const AddClientSteper = () => {
   const [page, setPage] = useState(0);
   // const dispatch = useDispatch()
