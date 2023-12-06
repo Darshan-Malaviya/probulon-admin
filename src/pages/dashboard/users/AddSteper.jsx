@@ -87,7 +87,7 @@ const AddSteper = () => {
       // formik.validateOnChange = true
     }
   });
-  const {values,handleChange,handleSubmit} = formik;
+  const {handleChange,handleSubmit} = formik;
 
   const Formtitle = ["User Details", "User Device Informaion", "Other"];
   const handleNext = () => {
@@ -102,7 +102,7 @@ const AddSteper = () => {
       <CardHeader className="fw-bolder fs-4">{Formtitle[page]}</CardHeader>
       <CardBody>
         <Form  onSubmit={handleSubmit}>
-          {page === 0 ? <UserDetails formik={formik} values={values} handleChange={handleChange}/> : page === 1 ? <UserId formik={formik} values={values} handleChange={handleChange}/>  : <Other  formik={formik} values={values} handleChange={handleChange}/>}
+          {page === 0 ? <UserDetails formik={formik}  handleChange={handleChange}/> : page === 1 ? <UserId formik={formik} handleChange={handleChange}/>  : <Other  formik={formik}  handleChange={handleChange}/>}
           {/* button for next and prev  */}
           <div className="ms-5">
           {page === 0 ? null : (

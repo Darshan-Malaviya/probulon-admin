@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-const UserDetails = ({formik,values,handleChange}) => {
+const UserDetails = ({formik,handleChange}) => {
   //form error validation fun..
   const renderError = (field) => {
 return  formik.errors[field] ? (
@@ -17,7 +17,7 @@ return  formik.errors[field] ? (
           placeholder="Enter Your First Name"
           className="w-25"
           name="firstName"
-          value={values.firstName}
+          value={formik.firstName}
           onChange={handleChange}
           required
         />
@@ -31,7 +31,7 @@ return  formik.errors[field] ? (
           className="w-25"
           placeholder="Enter Last Name"
           name="lastName"
-          value={values.lastName}
+          value={formik.lastName}
           onChange={handleChange}
         />
         {renderError("lastName")}
@@ -44,7 +44,7 @@ return  formik.errors[field] ? (
           className="w-25"
           placeholder="Enter  Name"
           name="name"
-          value={values.name}
+          value={formik.name}
           onChange={handleChange}
         />
         {renderError("name")}
@@ -57,7 +57,7 @@ return  formik.errors[field] ? (
           className="w-25"
           placeholder="Enter Surname"
           name="surname"
-          value={values.surname}
+          value={formik.surname}
           onChange={handleChange}
         />
         {renderError("surname")}
@@ -70,7 +70,7 @@ return  formik.errors[field] ? (
           className="w-25"
           placeholder="Enter Tipo De Document"
           name="tipoDeDocument"
-          value={values.tipoDeDocument}
+          value={formik.tipoDeDocument}
           onChange={handleChange}
         />
         {renderError("tipoDeDocument")}
@@ -83,7 +83,7 @@ return  formik.errors[field] ? (
           className="w-25"
           placeholder="Enter last Surname"
           name="lastSurname"
-          value={values.lastSurname}
+          value={formik.lastSurname}
           onChange={handleChange}
         />
         {renderError("lastSurname")}
@@ -94,7 +94,7 @@ return  formik.errors[field] ? (
         <Form.Select
           name="gender"
           className="w-25"
-          value={values.gender}
+          value={formik.gender}
           onChange={handleChange}
         >
           <option value="">Select Gender</option>
@@ -110,7 +110,7 @@ return  formik.errors[field] ? (
         <Form.Select
           name="userType"
           className="w-25"
-          value={values.userType}
+          value={formik.userType}
           onChange={handleChange}
         >
           <option value="">Select UserType</option>

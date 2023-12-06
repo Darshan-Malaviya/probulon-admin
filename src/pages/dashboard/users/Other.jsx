@@ -3,7 +3,7 @@ import {
     Form,
     FloatingLabel,
   } from "react-bootstrap";
-const Other = ({formik,values,handleChange}) => {
+const Other = ({formik,handleChange}) => {
     //form error validation fun..
 const  renderError2 = (field) =>
 formik.errors[field] ? (
@@ -18,7 +18,7 @@ formik.errors[field] ? (
           type="text"
           placeholder="Enter Province"
           name="province"
-          value={values.province}
+          value={formik.province}
           onChange={handleChange}
         />
         {renderError2("province")}
@@ -31,7 +31,7 @@ formik.errors[field] ? (
           type="number"
           placeholder="Enter Mobile No"
           name="mobile"
-          value={values.mobile}
+          value={formik.mobile}
           onChange={handleChange}
         />
         {renderError2("mobile")}
@@ -44,7 +44,7 @@ formik.errors[field] ? (
           type="number"
           placeholder="Enter SecondaryMobile"
           name="secondaryMobile"
-          value={values.secondaryMobile}
+          value={formik.secondaryMobile}
           onChange={handleChange}
         />
         {renderError2("secondaryMobile")}
@@ -57,7 +57,7 @@ formik.errors[field] ? (
           type="text"
           placeholder="Enter IdNumber No"
           name="idNumber"
-          value={values.idNumber}
+          value={formik.idNumber}
           onChange={handleChange}
         />
         {renderError2("idNumber")}
@@ -71,7 +71,7 @@ formik.errors[field] ? (
         <Form.Select
           name="typeOfCollaborator"
           className="w-25"
-          value={values.typeOfCollaborator}
+          value={formik.typeOfCollaborator}
           onChange={handleChange}
         >
           <option value="">Select Type Of Collaborator</option>
@@ -86,7 +86,7 @@ formik.errors[field] ? (
         <Form.Select
           name="taxStatus"
           className="w-25"
-          value={values.taxStatus}
+          value={formik.taxStatus}
           onChange={handleChange}
         >
           <option value="">Select Tax Status</option>
@@ -110,7 +110,7 @@ formik.errors[field] ? (
           <Form.Control
             as="textarea"
             name="taxAddress"
-            value={values.taxAddress}
+            value={formik.taxAddress}
             onChange={handleChange}
             placeholder="Leave a comment here"
           />
@@ -130,7 +130,7 @@ formik.errors[field] ? (
           <Form.Control
             as="textarea"
             name="notes"
-            value={values.notes}
+            value={formik.notes}
             onChange={handleChange}
             placeholder="Leave a comment here"
           />

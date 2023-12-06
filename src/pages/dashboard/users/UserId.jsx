@@ -1,6 +1,6 @@
 import { Form } from "react-bootstrap";
 
-const UserId = ({formik,values,handleChange}) => {
+const UserId = ({formik,handleChange}) => {
   const renderError1 = (field) =>
     formik.errors[field] ? (
       <div className="error ms-2 text-danger">{formik.errors[field]}</div>
@@ -14,7 +14,7 @@ const UserId = ({formik,values,handleChange}) => {
           type="text"
           placeholder="Enter Client Id"
           name="clientId"
-          value={values.clientId}
+          value={formik.clientId}
           onChange={handleChange}
         />
         {renderError1("clientId")}
@@ -25,10 +25,10 @@ const UserId = ({formik,values,handleChange}) => {
         <Form.Control
           type="text"
           className="w-25"
-          
+
           placeholder="Enter Device Id"
           name="deviceId"
-          value={values.deviceId}
+          value={formik.deviceId}
           onChange={handleChange}
         />
         {renderError1("deviceId")}
@@ -41,7 +41,7 @@ const UserId = ({formik,values,handleChange}) => {
           className="w-25"
           placeholder="Enter Email"
           name="email"
-          value={values.email}
+          value={formik.email}
           onChange={handleChange}
         />
         {renderError1("email")}
@@ -54,7 +54,7 @@ const UserId = ({formik,values,handleChange}) => {
           className="w-25"
           placeholder="Enter Password"
           name="password"
-          value={values.password}
+          value={formik.password}
           onChange={handleChange}
         />
         {renderError1("password")}
@@ -67,7 +67,7 @@ const UserId = ({formik,values,handleChange}) => {
           type="text"
           placeholder="Enter PostalCode"
           name="postalCode"
-          value={values.postalCode}
+          value={formik.postalCode}
           onChange={handleChange}
         />
         {renderError1("postalCode")}
@@ -80,7 +80,7 @@ const UserId = ({formik,values,handleChange}) => {
           type="text"
           placeholder="Enter Country"
           name="country"
-          value={values.country}
+          value={formik.country}
           onChange={handleChange}
         />
         {renderError1("country")}
@@ -93,7 +93,7 @@ const UserId = ({formik,values,handleChange}) => {
           type="text"
           placeholder="Enter town"
           name="town"
-          value={values.town}
+          value={formik.town}
           onChange={handleChange}
         />
         {renderError1("town")}
@@ -106,7 +106,7 @@ const UserId = ({formik,values,handleChange}) => {
           className="w-25"
           placeholder="Enter Secondary Emai"
           name="secondaryEmail"
-          value={values.secondaryEmail}
+          value={formik.secondaryEmail}
           onChange={handleChange}
         />
         {renderError1("secondaryEmail")}
@@ -117,7 +117,7 @@ const UserId = ({formik,values,handleChange}) => {
         <Form.Select
           name="position"
           className="w-25"
-          value={values.position}
+          value={formik.position}
           onChange={handleChange}
         >
           <option value="">Select Position</option>
