@@ -41,7 +41,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="d-flex flex-row h-100">
+      <div className="d-flex flex-row h-100 dashboard">
         <Sidebar routes={routes} toggle={toggle} />
         <div className="d-flex flex-column w-100">
           <NavBar toggle={toggle} setToggle={setToggle} />

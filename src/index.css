@@ -3,7 +3,6 @@
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #c7c6db;
 }
 
 .hr-bold {
@@ -21,6 +20,10 @@
 
 .login-shadow {
   box-shadow: 11px 2px 21px 26px #e8e1e1;
+}
+
+.dashboard {
+  background-color: #c7c6db;
 }
 
 .sidebar {
