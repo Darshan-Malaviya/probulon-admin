@@ -10,7 +10,7 @@ import { FaUsers, FaHome } from "react-icons/fa";
 import { BsHouseLockFill } from "react-icons/bs";
 import { RiFolderUserFill } from "react-icons/ri";
 import AddSteper from "./users/AddSteper";
-import AddClientSteper from "./clients/AddClientSteper";
+// import AddClientSteper from "./clients/AddClientSteper";
 const Dashboard = () => {
   const [path, setPath] = useState([]);
   const [toggle, setToggle] = useState(false);
@@ -68,7 +68,7 @@ const Dashboard = () => {
             <Route path="/users" element={<Users />} />
             <Route path="/users/add" element={<AddSteper />} />
             <Route path="/clients" element={<Clients />} />
-            <Route path="/clients/add" element={<AddClientSteper />} />
+            {/* <Route path="/clients/add" element={<AddClientSteper />} /> */}
             <Route path="/devices" element={<Devices />} />
           </Routes>
         </div>
