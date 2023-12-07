@@ -78,10 +78,11 @@ const Login = () => {
               className="mt-2 rounded-4 px-3 px-border w-100"
               id="email"
               type="email"
-              value={formik.email}
+              value={formik.values.email}
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
-            {formik.errors.email ? (
+            {formik.touched.email && formik.errors.email ? (
               <div className="error text-danger">{formik.errors.email}</div>
             ) : null}
             <label className="mt-5 fw-bold fs-4" id="password">
@@ -92,10 +93,11 @@ const Login = () => {
                 className="mt-2  rounded-4 px-3 px-border w-100"
                 id="password"
                 type={show ? "text" : "password"}
-                value={formik.password}
+                value={formik.values.password}
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
               />
-              {formik.errors.password ? (
+              {formik.touched.password && formik.errors.password ? (
                 <div className="error text-danger">
                   {formik.errors.password}
                 </div>

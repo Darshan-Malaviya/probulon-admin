@@ -8,7 +8,7 @@ export const adddataSlice = createSlice({
     initialState,
     reducers:{
         adddata : (state,action) => {
-              state.userdata += action.payload
+              state.userdata = action.payload
         }
     }
 })

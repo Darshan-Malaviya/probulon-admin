@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Table from "react-data-table-component";
 import { FaSortAmountUp } from "react-icons/fa";
 
-const DataTable = ({ data, columns, handleSelectedRow}) => {
-  const [filterText, setFilterText] = useState("");
-  const [userData,setUserDAta]=useState([])
+const DataTable = () => {
+  // const [filterText, setFilterText] = useState("");
+  // const [userData,setUserDAta]=useState([])
   return (
-    <Table
+    <>
+    {/* <Table
       columns={columns}
       data={data.filter((item) => {
         if (filterText !== "")
@@ -19,10 +20,8 @@ const DataTable = ({ data, columns, handleSelectedRow}) => {
       pagination
       selectableRows
       onSelectedRowsChange={handleSelectedRow}
-    />
-    // {userData?.map((user,index)=>{
-
-    // })}
+    /> */}
+  </>
   );
 };
 

@@ -1,124 +1,144 @@
 import { Form } from "react-bootstrap";
-const UserDetails = ({formik,handleChange}) => {
-  //form error validation fun..
-  const renderError = (field) => {
-return  formik.errors[field] ? (
-    <div className="error ms-2 text-danger">{formik.errors[field]}</div>
-  ) : null;
-  }
-   
+const UserDetails = ({ formik, handleChange }) => {
   return (
     <div className="ms-5">
-      <Form.Group controlId="firstName" className="d-flex flex-row m-2">
-        <Form.Label  className="col-3 w-25">First Name :</Form.Label>
+      <Form.Group className="d-flex flex-row m-2">
+        <Form.Label className="col-3 w-25">First Name :</Form.Label>
         <Form.Control
           type="text"
           id="firstName"
           placeholder="Enter Your First Name"
-          className="w-25"
+          className="w-25 one"
           name="firstName"
-          value={formik.firstName}
+          autoFocus
+          value={formik.values.firstName}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
           required
         />
 
-        {renderError("firstName")}
+        {formik.touched.firstName && formik.errors.firstName ? (
+          <div className="error text-danger">{formik.errors.firstName}</div>
+        ) : null}
       </Form.Group>
-      <Form.Group controlId="lastName" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3 w-25">Last Name :</Form.Label>
         <Form.Control
           type="text"
           className="w-25"
           placeholder="Enter Last Name"
           name="lastName"
-          value={formik.lastName}
+          value={formik.values.lastName}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         />
-        {renderError("lastName")}
+        {formik.touched.lastName && formik.errors.lastName ? (
+          <div className="error text-danger">{formik.errors.lastName}</div>
+        ) : null}
       </Form.Group>
 
-      <Form.Group controlId="name" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3">Name :</Form.Label>
         <Form.Control
           type="text"
           className="w-25"
           placeholder="Enter  Name"
           name="name"
-          value={formik.name}
+          value={formik.values.name}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         />
-        {renderError("name")}
+        {formik.touched.name && formik.errors.name ? (
+          <div className="error text-danger">{formik.errors.name}</div>
+        ) : null}
       </Form.Group>
 
-      <Form.Group controlId="surname" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3">Surname :</Form.Label>
         <Form.Control
           type="text"
           className="w-25"
           placeholder="Enter Surname"
           name="surname"
-          value={formik.surname}
+          value={formik.values.surname}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         />
-        {renderError("surname")}
+        {formik.touched.surname && formik.errors.surname ? (
+          <div className="error text-danger">{formik.errors.surname}</div>
+        ) : null}
       </Form.Group>
 
-      <Form.Group controlId="tipoDeDocument" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3">Tipo De Document :</Form.Label>
         <Form.Control
           type="text"
           className="w-25"
           placeholder="Enter Tipo De Document"
           name="tipoDeDocument"
-          value={formik.tipoDeDocument}
+          value={formik.values.tipoDeDocument}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         />
-        {renderError("tipoDeDocument")}
+        {formik.touched.tipoDeDocument && formik.errors.tipoDeDocument ? (
+          <div className="error text-danger">
+            {formik.errors.tipoDeDocument}
+          </div>
+        ) : null}
       </Form.Group>
 
-      <Form.Group controlId="lastSurname" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3">Last Surname :</Form.Label>
         <Form.Control
           type="text"
           className="w-25"
           placeholder="Enter last Surname"
           name="lastSurname"
-          value={formik.lastSurname}
+          value={formik.values.lastSurname}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         />
-        {renderError("lastSurname")}
+        {formik.touched.lastSurname && formik.errors.lastSurname ? (
+          <div className="error text-danger">{formik.errors.lastSurname}</div>
+        ) : null}
       </Form.Group>
 
-      <Form.Group controlId="gender" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3">Gender :</Form.Label>
         <Form.Select
           name="gender"
           className="w-25"
-          value={formik.gender}
+          value={formik.values.gender}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         >
           <option value="">Select Gender</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </Form.Select>
-        {renderError("gender")}
+        {formik.touched.gender && formik.errors.gender ? (
+          <div className="error text-danger">{formik.errors.gender}</div>
+        ) : null}
       </Form.Group>
 
-      <Form.Group controlId="userType" className="d-flex flex-row m-2">
+      <Form.Group className="d-flex flex-row m-2">
         <Form.Label className="col-3">UserType :</Form.Label>
         <Form.Select
           name="userType"
           className="w-25"
-          value={formik.userType}
+          value={formik.values.userType}
           onChange={handleChange}
+          onBlur={formik.handleBlur}
         >
           <option value="">Select UserType</option>
           <option value="Client">1 - Client</option>
           <option value="User">2 - User</option>
           <option value="Admin">3 - Admin</option>
         </Form.Select>
-        {renderError("userType")}
+        {formik.touched.userType && formik.errors.userType ? (
+          <div className="error text-danger">{formik.errors.userType}</div>
+        ) : null}
       </Form.Group>
     </div>
   );

@@ -1,21 +1,33 @@
-// import { useState } from "react";
-// import {
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   Button,
-//   Form,
-//   FloatingLabel,
-// } from "react-bootstrap";
-// import { MdNavigateNext } from "react-icons/md";
-// import { GrFormPrevious } from "react-icons/gr";
-// // import { useDispatch } from "react-redux";
-// import { useFormik } from "formik";
-// // import adddata from "./Fuatures/UserSlice"
-// import * as Yup from "yup";
-// const AddClientSteper = () => {
-//   const [page, setPage] = useState(0);
-//   // const dispatch = useDispatch()
+import { useState } from "react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Form,
+  FloatingLabel,
+} from "react-bootstrap";
+import { MdNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
+// import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
+// import adddata from "./Fuatures/UserSlice"
+import * as Yup from "yup";
+const AddClientSteper = () => {
+  const [page, setPage] = useState(0);
+  const [stepeone,setStepone]=useState({
+    firstName:"",
+    lastName:"",
+    name:"",
+    surname:"",
+    surname:"",
+    lastSurname:"",
+    tipoDeDocument:"",
+    gender:"",
+    userType:""
+  });
+  const [errorone,setErrorone]=useState({})
+  // const dispatch = useDispatch()
 //   const formik = useFormik({
 //     initialValues: {
 //       firstName: "",
@@ -87,120 +99,129 @@
 //     },
 //   });
 
-//   const Formtitle = ["Client Details", "Client Device Informaion", "Other"];
+  const Formtitle = ["Client Details", "Client Device Informaion", "Other"];
 //   const renderError = (field) =>
 //     formik.errors[field] ? (
 //       <div className="error ms-2 text-danger">{formik.errors[field]}</div>
 //     ) : null;
-//   const ClientDetails = () => {
-//     return (
-//       <div className="ms-5">
-//         <Form.Group controlId="firstName" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3 w-25">First Name :</Form.Label>
-//           <Form.Control
-//             type="text"
-//             placeholder="Enter Your First Name"
-//             className="w-25"
-//             name="firstName"
-//             value={formik.values.firstName}
-//             onChange={formik.handleChange}
-//           />
-//         </Form.Group>
-//         {renderError("firstName")}
-//         <Form.Group controlId="lastName" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3 w-25">Last Name :</Form.Label>
-//           <Form.Control
-//             type="text"
-//             className="w-25"
-//             placeholder="Enter Last Name"
-//             name="lastName"
-//             value={formik.values.lastName}
-//             onChange={formik.handleChange}
-//           />
-//         </Form.Group>
-//         {renderError("lastName")}
-//         <Form.Group controlId="name" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3">Name :</Form.Label>
-//           <Form.Control
-//             type="text"
-//             className="w-25"
-//             placeholder="Enter  Name"
-//             name="name"
-//             value={formik.values.name}
-//             onChange={formik.handleChange}
-//           />
-//         </Form.Group>
-//         {renderError("name")}
+const handleChange = (e) => {
+    const { name, value } = e.target;
+    setStepone({
+      ...stepeone,
+      [name]: value,
+    });
+  };
 
-//         <Form.Group controlId="surname" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3">Surname :</Form.Label>
-//           <Form.Control
-//             type="text"
-//             className="w-25"
-//             placeholder="Enter Surname"
-//             name="surname"
-//             value={formik.values.surname}
-//             onChange={formik.handleChange}
-//           />
-//         </Form.Group>
-//         {renderError("surname")}
-//         <Form.Group controlId="tipoDeDocument" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3">Tipo De Document :</Form.Label>
-//           <Form.Control
-//             type="text"
-//             className="w-25"
-//             placeholder="Enter Tipo De Document"
-//             name="tipoDeDocument"
-//             value={formik.values.tipoDeDocument}
-//             onChange={formik.handleChange}
-//           />
-//         </Form.Group>
-//         {renderError("tipoDeDocument")}
-//         <Form.Group controlId="lastSurname" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3">Last Surname :</Form.Label>
-//           <Form.Control
-//             type="text"
-//             className="w-25"
-//             placeholder="Enter last Surname"
-//             name="lastSurname"
-//             value={formik.values.lastSurname}
-//             onChange={formik.handleChange}
-//           />
-//         </Form.Group>
-//         {renderError("lastSurname")}
-//         <Form.Group controlId="gender" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3">Gender :</Form.Label>
-//           <Form.Select
-//             name="gender"
-//             className="w-25"
-//             value={formik.values.gender}
-//             onChange={formik.handleChange}
-//           >
-//             <option value="">Select Gender</option>
-//             <option value="Male">Male</option>
-//             <option value="Female">Female</option>
-//             <option value="Other">Other</option>
-//           </Form.Select>
-//         </Form.Group>
-//         {renderError("gender")}
-//         <Form.Group controlId="userType" className="d-flex flex-row m-2">
-//           <Form.Label className="col-3">UserType :</Form.Label>
-//           <Form.Select
-//             name="userType"
-//             className="w-25"
-//             value={formik.values.userType}
-//             onChange={formik.handleChange}
-//           >
-//             <option value="">Select UserType</option>
-//             <option value="Client">1 - Client</option>
-//             <option value="User">2 - User</option>
-//             <option value="Admin">3 - Admin</option>
-//           </Form.Select>
-//         </Form.Group>
-//         {renderError("userType")}
-//       </div>
-//     );
-//   };
+  console.log(stepeone)
+  const ClientDetails = () => {
+    return (
+      <div className="ms-5">
+        <Form.Group controlId="firstName" className="d-flex flex-row m-2">
+          <Form.Label className="col-3 w-25">First Name :</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Your First Name"
+            className="w-25"
+            name="firstName"
+            value={stepeone.firstName}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {/* {renderError("firstName")} */}
+        <Form.Group controlId="lastName" className="d-flex flex-row m-2">
+          <Form.Label className="col-3 w-25">Last Name :</Form.Label>
+          <Form.Control
+            type="text"
+            className="w-25"
+            placeholder="Enter Last Name"
+            name="lastName"
+            value={stepeone.lastName}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {/* {renderError("lastName")} */}
+        <Form.Group controlId="name" className="d-flex flex-row m-2">
+          <Form.Label className="col-3">Name :</Form.Label>
+          <Form.Control
+            type="text"
+            className="w-25"
+            placeholder="Enter  Name"
+            name="name"
+            value={stepeone.name}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {/* {renderError("name")} */}
+
+        <Form.Group controlId="surname" className="d-flex flex-row m-2">
+          <Form.Label className="col-3">Surname :</Form.Label>
+          <Form.Control
+            type="text"
+            className="w-25"
+            placeholder="Enter Surname"
+            name="surname"
+            value={stepeone.surname}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {/* {renderError("surname")} */}
+        <Form.Group controlId="tipoDeDocument" className="d-flex flex-row m-2">
+          <Form.Label className="col-3">Tipo De Document :</Form.Label>
+          <Form.Control
+            type="text"
+            className="w-25"
+            placeholder="Enter Tipo De Document"
+            name="tipoDeDocument"
+            value={stepeone.tipoDeDocument}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {/* {renderError("tipoDeDocument")} */}
+        <Form.Group controlId="lastSurname" className="d-flex flex-row m-2">
+          <Form.Label className="col-3">Last Surname :</Form.Label>
+          <Form.Control
+            type="text"
+            className="w-25"
+            placeholder="Enter last Surname"
+            name="lastSurname"
+            value={stepeone.lastSurname}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        {/* {renderError("lastSurname")} */}
+        <Form.Group controlId="gender" className="d-flex flex-row m-2">
+          <Form.Label className="col-3">Gender :</Form.Label>
+          <Form.Select
+            name="gender"
+            className="w-25"
+            value={stepeone.gender}
+            onChange={handleChange}
+          >
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </Form.Select>
+        </Form.Group>
+        {/* {renderError("gender")} */}
+        <Form.Group controlId="userType" className="d-flex flex-row m-2">
+          <Form.Label className="col-3">UserType :</Form.Label>
+          <Form.Select
+            name="userType"
+            className="w-25"
+            value={stepeone.userType}
+            onChange={handleChange}
+          >
+            <option value="">Select UserType</option>
+            <option value="Client">1 - Client</option>
+            <option value="User">2 - User</option>
+            <option value="Admin">3 - Admin</option>
+          </Form.Select>
+        </Form.Group>
+        {/* {renderError("userType")} */}
+      </div>
+    );
+  };
 
 //   const ClientId = () => {
 //     return (
@@ -445,56 +466,57 @@
 //     );
 //   };
 
-//   const PageDisplay = () => {
-//     if (page === 0) {
-//       return <ClientDetails />;
-//     } else if (page === 1) {
-//       return <ClientId />;
-//     } else {
-//       return <Other />;
-//     }
-//   };
+  const PageDisplay = () => {
+    if (page === 0) {
+      return <ClientDetails />;
+    } 
+    // else if (page === 1) {
+    //   return <ClientId />;
+    // } else {
+    //   return <Other />;
+    // }
+  };
 
-//   const handleNext = () => {
-//     setPage((cur) => cur + 1);
-//   };
+  const handleNext = () => {
+    setPage((cur) => cur + 1);
+  };
 
-//   const handlePrev = () => {
-//     setPage((cur) => cur - 1);
-//   };
-//   return (
-//     <Card className="m-2">
-//       <CardHeader className="fw-bolder fs-4">{Formtitle[page]}</CardHeader>
-//       <CardBody>
-//         <Form action="POST" onSubmit={formik.handleSubmit}>
-//           {PageDisplay()}
-//           {page === 0 ? null : (
-//             <Button
-//               variant="danger"
-//               className=" ms-5 mt-3"
-//               onClick={handlePrev}
-//             >
-//               <GrFormPrevious /> Prev Form
-//             </Button>
-//           )}
+  const handlePrev = () => {
+    setPage((cur) => cur - 1);
+  };
+  return (
+    <Card className="m-2">
+      <CardHeader className="fw-bolder fs-4">{Formtitle[page]}</CardHeader>
+      <CardBody>
+        <Form action="POST">
+          {PageDisplay()}
+          {page === 0 ? null : (
+            <Button
+              variant="danger"
+              className=" ms-5 mt-3"
+              onClick={handlePrev}
+            >
+              <GrFormPrevious /> Prev Form
+            </Button>
+          )}
 
-//           {page !== Formtitle.length - 1 ? (
-//             <Button
-//               variant="primary"
-//               className="mt-3  ms-5"
-//               onClick={handleNext}
-//             >
-//               Next Form <MdNavigateNext />
-//             </Button>
-//           ) : (
-//             <Button variant="primary" className=" mt-3  ms-5" type="submit">
-//               Submit
-//             </Button>
-//           )}
-//         </Form>
-//       </CardBody>
-//     </Card>
-//   );
-// };
+          {page !== Formtitle.length - 1 ? (
+            <Button
+              variant="primary"
+              className="mt-3  ms-5"
+              onClick={handleNext}
+            >
+              Next Form <MdNavigateNext />
+            </Button>
+          ) : (
+            <Button variant="primary" className=" mt-3  ms-5">
+              Submit
+            </Button>
+          )}
+        </Form>
+      </CardBody>
+    </Card>
+  );
+};
 
-// export default AddClientSteper;
+export default AddClientSteper;

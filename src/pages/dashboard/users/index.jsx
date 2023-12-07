@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalBody, Form } from "react-bootstrap";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+} from "react-bootstrap";
 import TableComponent from "../../../components/table";
+import UserTable from "./UserTable";
+
 import api from "../../../services/api";
 import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
+
 const Users = () => {
   const [data, setData] = useState([]);
   const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
   const [show, setShow] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   async function fetchUser() {
-    const resData = await api.get("/users/getAll");
+    const resData = await api.get("http://79.143.90.196/api/v1/users/getAll");
+    swal.success(resData.message);
     if (resData.isSuccess) {
       setData(resData.data);
     } else swal.error(resData.message);
@@ -19,36 +32,76 @@ const Users = () => {
   useEffect(() => {
     fetchUser();
   }, []);
-  const columns = [
-    {
-      name: "Name",
-      selector: (row) => row["firstName"],
-      sortable: true,
-    },
-    {
-      name: "Email",
-      selector: (row) => row["email"],
-      sortable: true,
-    },
-    {
-      name: "LastName",
-      selector: (row) => row["lastName"],
-      sortable: true,
-      right: "true",
-    },
-  ];
+  // const columns = [
+  //   {
+  //     name: "Name",
+  //     selector: (row) => row["firstName"],
+  //     sortable: true,
+  //   },
+  //   {
+  //     name: "Email",
+  //     selector: (row) => row["email"],
+  //     sortable: true,
+  //   },
+  //   {
+  //     name: "LastName",
+  //     selector: (row) => row["lastName"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "FirstName",
+  //     selector: (row) => row["firstName"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "PositionText",
+  //     selector: (row) => row["positionText"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "SecondaryEmail",
+  //     selector: (row) => row["secondaryEmail"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "StatusText",
+  //     selector: (row) => row["statusText"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "StatusText",
+  //     selector: (row) => row["statusText"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "StatusText",
+  //     selector: (row) => row["statusText"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  //   {
+  //     name: "StatusText",
+  //     selector: (row) => row["statusText"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  // ];
 
-  function handleSelectedRow(state) {
-    setRow(state.selectedRows);
-  }
+  // function handleSelectedRow(state) {
+  //   setRow(state.selectedRows);
+  // }
 
   return (
     <>
       <Modal show={show}>
         <ModalHeader>Add New User</ModalHeader>
-        <ModalBody>
-          
-        </ModalBody>
+        <ModalBody></ModalBody>
       </Modal>
       <Card className="m-2 h-100 border">
         <CardHeader className="fw-bold">Users</CardHeader>
@@ -65,12 +118,29 @@ const Users = () => {
               <Button className="bg-success mx-2 border-0">Active</Button>
               <Button className="bg-danger border-0">Deleted</Button>
             </div>
-            
-            <Button className="float-end" onClick={() => navigate('/dashboard/users/add')}>
+
+            <Button
+              className="float-end"
+              onClick={() => navigate("/dashboard/users/add")}
+            >
               Add User
             </Button>
           </div>
-          <TableComponent
+
+          {data.length !== 0 ? (
+            <UserTable
+              data={data.filter((item) => {
+                if (filterText !== "")
+                  return item.firstName
+                    .toLowerCase()
+                    .includes(filterText.toLowerCase());
+                return item;
+              })}
+            />
+          ) : (
+            <h4 className="text-center m-3">Data is Not Define....</h4>
+          )}
+          {/* <TableComponent
             data={data.filter((item) => {
               if (filterText !== "")
                 return item.firstName
@@ -80,7 +150,7 @@ const Users = () => {
             })}
             columns={columns}
             handleSelectedRow={handleSelectedRow}
-          />
+          /> */}
         </CardBody>
       </Card>
     </>
