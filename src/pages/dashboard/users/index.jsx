@@ -9,6 +9,8 @@ import {
   ModalBody,
   Form,
 } from "react-bootstrap";
+import { IoMdAddCircle } from "react-icons/io";
+
 import TableComponent from "../../../components/table";
 import UserTable from "./UserTable";
 
@@ -24,8 +26,8 @@ const Users = () => {
   const navigate = useNavigate();
   async function fetchUser() {
     const resData = await api.get("http://79.143.90.196/api/v1/users/getAll");
-    swal.success(resData.message);
     if (resData.isSuccess) {
+      swal.success(resData.message);
       setData(resData.data);
     } else swal.error(resData.message);
   }
@@ -108,7 +110,7 @@ const Users = () => {
         <CardBody>
           <div className="d-flex flex-row justify-content-between ">
             <input
-              className="outline-none col-6 rounded-2 border-1px px-2"
+              className="outline-none col-6 rounded-2 border-1px px-2 "
               type="text"
               placeholder="Filter Users..."
               value={filterText}
@@ -120,10 +122,12 @@ const Users = () => {
             </div>
 
             <Button
-              className="float-end"
+              className="float-end btn  btn-primary"
+              variant="outline"
               onClick={() => navigate("/dashboard/users/add")}
             >
-              Add User
+              <IoMdAddCircle className="fs-3" />{" "}
+              <span className="fw-medium">Create User </span>
             </Button>
           </div>
 

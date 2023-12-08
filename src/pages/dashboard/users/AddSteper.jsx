@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
@@ -16,11 +16,26 @@ import * as Yup from "yup";
 import swal from "../../../components/sweetAlert";
 import UserDetails from "./UserDetails";
 import UserId from "./UserId";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+
+// import { useParams } from "react-router-dom";
 import Other from "./Other";
+import api from "../../../services/api";
 const AddSteper = () => {
   const [page, setPage] = useState(0);
-
+  const [userupdate, setUserupdate] = useState();
+  // const userid = useParams();
+  // const { id } = userid;
   const dispatch = useDispatch();
+  // console.log(id);
+  // useEffect(() => {
+  //   (async (id) => {
+  //     let response = await api.get(`http://79.143.90.196/api/v1/users/getAll`);
+  //     setUserupdate(response.data.find((value) => value.id === id));
+  //   })();
+  // }, [id]);
+  // console.log(userupdate.firstName);
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -143,7 +158,12 @@ const AddSteper = () => {
   };
   return (
     <Card className="m-2">
-      <CardHeader className="fw-bolder fs-4">{Formtitle[page]}</CardHeader>
+      <CardHeader className="fw-bolder fs-4">
+        <Link to={"/dashboard/users"}>
+          <FaArrowLeftLong className="me-3 text-black" />
+        </Link>
+        {Formtitle[page]}
+      </CardHeader>
       <CardBody>
         <Form onSubmit={handleSubmit}>
           {page === 0 ? (

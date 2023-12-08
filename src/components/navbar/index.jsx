@@ -1,34 +1,46 @@
-import {useState} from "react";
-import { Button,Dropdown } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Dropdown } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GrClose } from "react-icons/gr";
 // import { FaUserCircle } from "react-icons/fa";
-import profileImg from "../../assets/profile.png"
+import profileImg from "../../assets/profile.png";
 import { BsPersonFill, BsBoxArrowRight } from "react-icons/bs";
-
-const NavBar = ({toggle, setToggle}) => {
+import { useNavigate } from "react-router-dom";
+const NavBar = ({ toggle, setToggle }) => {
   const [showDropdown, setShowDropdown] = useState(false);
-
+  const navigate = useNavigate();
   const handleDropdownToggle = () => {
     setShowDropdown(!showDropdown);
   };
 
   const handleMenuItemClick = (action) => {
     console.log("Clicked:", action);
-    setShowDropdown(false); 
+    action === "Log Out"
+      ? localStorage.removeItem("login") & navigate("/")
+      : action === "Profile"
+      ? navigate("/dashboard/*")
+      : null;
+    setShowDropdown(false);
   };
 
-  return <nav className="navbar w-100 bg-body-tertiary">
-    <Button className="bg-light text-black border-0" onClick={() => setToggle(!toggle)}> { !toggle ?<RxHamburgerMenu className="m-2 fw-bold fs-4"/> : <GrClose className="m-2 fw-bold "/> }</Button>
-    <Dropdown
-        align="end"
-        show={showDropdown}
-        onToggle={handleDropdownToggle}
+  return (
+    <nav className="navbar w-100 bg-body-tertiary">
+      <Button
+        className="bg-light text-black border-0"
+        onClick={() => setToggle(!toggle)}
       >
+        {" "}
+        {!toggle ? (
+          <RxHamburgerMenu className="m-2 fw-bold fs-4" />
+        ) : (
+          <GrClose className="m-2 fw-bold " />
+        )}
+      </Button>
+      <Dropdown align="end" show={showDropdown} onToggle={handleDropdownToggle}>
         <Dropdown.Toggle
           variant="secondary"
           id="dropdown-basic"
-          onClick={handleDropdownToggle}
+          onMouseEnter={handleDropdownToggle}
           style={{ visibility: "hidden", position: "absolute" }}
         />
         <Dropdown.Menu
@@ -55,7 +67,8 @@ const NavBar = ({toggle, setToggle}) => {
           onClick={handleDropdownToggle}
         />
       </Dropdown>
-  </nav>;
+    </nav>
+  );
 };
 
 export default NavBar;

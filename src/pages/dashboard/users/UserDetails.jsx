@@ -1,5 +1,6 @@
 import { Form } from "react-bootstrap";
-const UserDetails = ({ formik, handleChange }) => {
+const UserDetails = ({ formik, handleChange}) => {
+  
   return (
     <div className="ms-5">
       <Form.Group className="d-flex flex-row m-2">

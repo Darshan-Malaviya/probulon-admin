@@ -15,8 +15,8 @@ const Dashboard = () => {
   const [path, setPath] = useState([]);
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
-//  const token = localStorage.getItem(JSON.parse("login"))
-//  console.log(token)
+  //  const token = localStorage.getItem(JSON.parse("login"))
+  //  console.log(token)
   const routes = [
     {
       name: "Clients",
@@ -69,6 +69,7 @@ const Dashboard = () => {
           <Routes>
             <Route path="/users" element={<Users />} />
             <Route path="/users/add" element={<AddSteper />} />
+            {/* <Route path="/users/add/:id" element={<AddSteper />} /> */}
             <Route path="/clients" element={<Clients />} />
             <Route path="/clients/add" element={<AddClientSteper />} />
             <Route path="/devices" element={<Devices />} />

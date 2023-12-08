@@ -20,7 +20,7 @@ function Sidebar({ routes, toggle }) {
               return (
                 <Nav.Item className={activeRoute(prop.path) ? "sidebar-tab-active" : ''} key={key}>
                   <NavLink to={prop.path} className="sidebar-tab btn fw-bold d-flex justify-content-start">
-                    <span style={{"fontSize": ""}}>{prop.icon}</span>
+                    <span style={{"fontSize": "20px"}}>{prop.icon}</span>
                     <span className="mx-3" style={{"margin": "3px"}}>{prop.name}</span>
                   </NavLink>
                 </Nav.Item>
