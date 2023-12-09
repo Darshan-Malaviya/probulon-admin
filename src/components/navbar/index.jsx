@@ -15,8 +15,8 @@ const NavBar = ({ toggle, setToggle }) => {
 
   const handleMenuItemClick = (action) => {
     console.log("Clicked:", action);
-    action === "Log Out"
-      ? localStorage.removeItem("login") & navigate("/")
+    action === "LogOut"
+      ? localStorage.removeItem("user_token") & navigate("/login") 
       : action === "Profile"
       ? navigate("/dashboard/*")
       : null;
@@ -53,7 +53,7 @@ const NavBar = ({ toggle, setToggle }) => {
             Profile
           </Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item onClick={() => handleMenuItemClick("Log Out")}>
+          <Dropdown.Item onClick={() => handleMenuItemClick("LogOut")}>
             <BsBoxArrowRight className="me-2" />
             Log Out
           </Dropdown.Item>

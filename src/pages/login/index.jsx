@@ -4,10 +4,10 @@ import { MdOutlineMailLock } from "react-icons/md";
 import { PiPaperPlaneRightFill } from "react-icons/pi";
 import { BiShowAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-
+import {  toast } from 'react-toastify';
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import swal from "../../components/sweetAlert";
+// import swal from "../../components/sweetAlert";
 import api from "../../services/api";
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +24,6 @@ const Login = () => {
       password: Yup.string().required("password is required").min(6),
     }),
     onSubmit: async (value) => {
-      console.log(value);
       try {
         let response = await api.post(
           "http://79.143.90.196/api/v1/auth/login",
@@ -35,17 +34,13 @@ const Login = () => {
         );
         if (response.isSuccess) {
           const { token } = response.data;
-
-          localStorage.setItem("login", token);
-
-          swal.success(response.message);
+          localStorage.setItem("user_token", token);
+          toast.success(response.message);
           navigate("/dashboard");
         } else {
-          console.log("User authentication failed.");
-          swal.error(data.message);
+          toast.error(data.message);
         }
       } catch (error) {
-        console.log("user is not valid");
         console.error(error);
       }
     },

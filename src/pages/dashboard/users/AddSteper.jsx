@@ -84,7 +84,7 @@ const AddSteper = () => {
       taxStatus: Yup.string().required("TaxStatus is required"),
       tipoDeDocument: Yup.string().required("TipoDeDocument is required"),
       idNumber: Yup.string().required("IdNumber is required"),
-      postalCode: Yup.number().required("PostalCode is required"),
+      postalCode: Yup.string().required("PostalCode is required"),
       town: Yup.string().required("Town is required"),
       province: Yup.string().required("province is required"),
       country: Yup.string().required("country is required"),
@@ -107,7 +107,8 @@ const AddSteper = () => {
 
   const Formtitle = ["User Details", "User Device Informaion", "Other"];
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     const errors = Object.keys(formik.errors);
     let currentFields = [];
 
@@ -115,6 +116,8 @@ const AddSteper = () => {
       currentFields = [
         "firstName",
         "lastName",
+        "tipoDeDocument",
+        "lastSurname",
         "name",
         "surname",
         "userType",
@@ -135,12 +138,13 @@ const AddSteper = () => {
     } else if (page === 2) {
       currentFields = [
         "taxStatus",
-        "tipoDeDocument",
-        "idNumber",
+        "province",
         "taxAddress",
         "notes",
         "mobile",
+        "idNumber",
         "secondaryMobile",
+        "typeOfCollaborator"
       ];
     }
 
@@ -174,7 +178,7 @@ const AddSteper = () => {
             <Other formik={formik} handleChange={handleChange} />
           )}
           {/* button for next and prev  */}
-          <div className="ms-5">
+          <div className="ms-sm-3.5 ms-md-4 ms-lg-5">
             {page === 0 ? null : (
               <button
                 className="btn btn-danger mt-3 ms-2"
@@ -184,22 +188,18 @@ const AddSteper = () => {
                 <GrFormPrevious /> Prev Form
               </button>
             )}
-
+            {console.log(page, page !== Formtitle.length - 1)}
             {page !== Formtitle.length - 1 ? (
               <button
                 className="btn btn-primary mt-3 ms-2"
                 type="button"
-                onClick={() => handleNext()}
+                onClick={(e) => handleNext(e)}
               >
                 {" "}
                 Next Form <MdNavigateNext />
               </button>
             ) : (
-              <button
-                className="btn btn-primary mt-3 ms-2"
-                type="submit"
-                onClick={() => handleNext()}
-              >
+              <button className="btn btn-primary mt-3 ms-2" type="submit">
                 {" "}
                 Submit
               </button>

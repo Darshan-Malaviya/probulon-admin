@@ -51,7 +51,7 @@ const Dashboard = () => {
             <nav aria-label="breadcrumb">
               <ol className="d-flex justify-content-start align-content-center h-100 breadcrumb">
                 <li className="px-2 breadcrumb-item">
-                  <FaHome />
+                  <FaHome className="fs-4"/>
                 </li>
                 {path.map((item, index) => (
                   <li key={index} className="breadcrumb-item">
