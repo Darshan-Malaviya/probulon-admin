@@ -11,12 +11,12 @@ import { BsHouseLockFill } from "react-icons/bs";
 import { RiFolderUserFill } from "react-icons/ri";
 import AddSteper from "./users/AddSteper";
 import AddClientSteper from "./clients/AddClientSteper";
+import "./index.css"
 const Dashboard = () => {
   const [path, setPath] = useState([]);
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
-  //  const token = localStorage.getItem(JSON.parse("login"))
-  //  console.log(token)
+
   const routes = [
     {
       name: "Clients",
@@ -51,7 +51,7 @@ const Dashboard = () => {
             <nav aria-label="breadcrumb">
               <ol className="d-flex justify-content-start align-content-center h-100 breadcrumb">
                 <li className="px-2 breadcrumb-item">
-                  <FaHome className="fs-4"/>
+                  <FaHome className="homeicon fs-4"/>
                 </li>
                 {path.map((item, index) => (
                   <li key={index} className="breadcrumb-item">
@@ -69,7 +69,6 @@ const Dashboard = () => {
           <Routes>
             <Route path="/users" element={<Users />} />
             <Route path="/users/add" element={<AddSteper />} />
-            {/* <Route path="/users/add/:id" element={<AddSteper />} /> */}
             <Route path="/clients" element={<Clients />} />
             <Route path="/clients/add" element={<AddClientSteper />} />
             <Route path="/devices" element={<Devices />} />

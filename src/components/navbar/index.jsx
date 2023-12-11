@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Button, Dropdown } from "react-bootstrap";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { GrClose } from "react-icons/gr";
-// import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import profileImg from "../../assets/profile.png";
 import { BsPersonFill, BsBoxArrowRight } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import "./index.css"
 const NavBar = ({ toggle, setToggle }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
@@ -24,9 +25,10 @@ const NavBar = ({ toggle, setToggle }) => {
   };
 
   return (
-    <nav className="navbar w-100 bg-body-tertiary">
+    <nav className="navbar w-100  nav">
       <Button
-        className="bg-light text-black border-0"
+      variant=""
+        className="navopentogle p-1 ms-2 my-0 text-white border-0"
         onClick={() => setToggle(!toggle)}
       >
         {" "}
@@ -46,26 +48,19 @@ const NavBar = ({ toggle, setToggle }) => {
         <Dropdown.Menu
           show={showDropdown}
           onHide={() => setShowDropdown(false)}
-          className="me-2"
+          className=""
         >
           <Dropdown.Item onClick={() => handleMenuItemClick("Profile")}>
-            <BsPersonFill className="me-2" />
+            <BsPersonFill className="profileicon me-2" />
             Profile
           </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={() => handleMenuItemClick("LogOut")}>
-            <BsBoxArrowRight className="me-2" />
+            <BsBoxArrowRight className="profileicon me-2" />
             Log Out
           </Dropdown.Item>
         </Dropdown.Menu>
-        <img
-          src={profileImg}
-          alt=""
-          width="25px"
-          height="25px"
-          className="profile-img me-3"
-          onClick={handleDropdownToggle}
-        />
+        <FaUserCircle className="profile " onClick={handleDropdownToggle}/>
       </Dropdown>
     </nav>
   );

@@ -19,23 +19,14 @@ import UserId from "./UserId";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-// import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Other from "./Other";
 import api from "../../../services/api";
+import { toast } from "react-toastify";
 const AddSteper = () => {
   const [page, setPage] = useState(0);
-  const [userupdate, setUserupdate] = useState();
-  // const userid = useParams();
-  // const { id } = userid;
-  const dispatch = useDispatch();
-  // console.log(id);
-  // useEffect(() => {
-  //   (async (id) => {
-  //     let response = await api.get(`http://79.143.90.196/api/v1/users/getAll`);
-  //     setUserupdate(response.data.find((value) => value.id === id));
-  //   })();
-  // }, [id]);
-  // console.log(userupdate.firstName);
+  // const [userupdate, setUserupdate] = useState();
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -99,8 +90,7 @@ const AddSteper = () => {
     }),
     onSubmit: (value) => {
       console.log(value);
-      dispatch(adddata(JSON.stringify(value)));
-      swal.success("User Data Add SuccessFull");
+      value && (toast.success("User Data Add SuccessFull") & navigate("/dashboard/users") )
     },
   });
   const { handleChange, handleSubmit } = formik;
@@ -180,29 +170,31 @@ const AddSteper = () => {
           {/* button for next and prev  */}
           <div className="ms-sm-3.5 ms-md-4 ms-lg-5">
             {page === 0 ? null : (
-              <button
-                className="btn btn-danger mt-3 ms-2"
+              <Button
+              variant=""
+                className="prevbutton mt-3 me-2 ms-3 ms-lg-0"
                 type="button"
                 onClick={() => handlePrev()}
               >
                 <GrFormPrevious /> Prev Form
-              </button>
+              </Button>
             )}
             {console.log(page, page !== Formtitle.length - 1)}
             {page !== Formtitle.length - 1 ? (
-              <button
-                className="btn btn-primary mt-3 ms-2"
+              <Button
+              variant=""
+                className={page === 1 ? "nextbutton mt-3   ms-lg-0 " : "nextbutton mt-2 ms-3 "}
                 type="button"
                 onClick={(e) => handleNext(e)}
               >
                 {" "}
                 Next Form <MdNavigateNext />
-              </button>
+              </Button>
             ) : (
-              <button className="btn btn-primary mt-3 ms-2" type="submit">
+              <Button variant="" className="nextbutton mt-3 ms-2" type="submit">
                 {" "}
                 Submit
-              </button>
+              </Button>
             )}
           </div>
         </Form>
