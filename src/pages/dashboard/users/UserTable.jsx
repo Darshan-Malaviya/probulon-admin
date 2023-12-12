@@ -13,17 +13,27 @@ import UserId from "./UserId";
 import Other from "./Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
-
+import api from "../../../services/api";
 import "./index.css";
 const UserTable = ({ data }) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
-  const [updateuser, setUpdateuser] = useState([ ]);
+  const[userdata,setUserdata]=useState(data)
+  const [updateuser, setUpdateuser] = useState([]);
   const handleClose = () => setShow(false);
-  const handleShow = (id) => {
-    setUpdateuser(data.find((value) => value._id == id));
-    setShow(true);
+  const handleShow = async(id) => {
+    try {
+      const resData = await api.get(`http://79.143.90.196/api/v1/users/getById?userId=${id}`);
+      if (resData.isSuccess) {
+        console.log(resData,"-----getid")
+        setUpdateuser(resData.data)
+        setShow(true);
+      } else toast.error(resData.message);
+    } catch (error) {
+      toast.error(error) 
+    }    
   };
+  console.log(updateuser)
   const formik = useFormik({
     initialValues: {
       firstName: updateuser.firstName,
@@ -85,18 +95,33 @@ const UserTable = ({ data }) => {
       gender: Yup.string().required("gender is required"),
       userType: Yup.string().required("userType is required"),
     }),
-    onSubmit: (value) => {
+    onSubmit: async(value) => {
       console.log(value);
-      value &&
-        toast.success("User Data Add SuccessFull") &
-          navigate("/dashboard/users");
+      try {
+        const resData = await api.put("http://79.143.90.196/api/v1/users/update",value);
+        console.log(resData)
+        if (resData.isSuccess) {
+          toast.success("User Data Update SuccessFull") 
+          navigate("/dashboard/users") 
+        } else toast.error(resData.message);
+      } catch (error) {
+        toast.error("User Data Not Update",error) 
+      }
     },
   });
 
   const { handleChange, handleSubmit } = formik;
 
   const handleDelete = async (id) => {
-    console.log(`${id} is Delete`);
+    try {
+      const resData = await api.delete(`http://79.143.90.196/api/v1/users/delete?userId=${id}`);
+      console.log(resData)
+      if (resData.isSuccess) {
+        setUserdata(resData.data);
+      } else toast.error(resData.message);
+    } catch (error) {
+      toast.error(error)
+    }
   };
   const handleNext = (e) => {
     e.preventDefault();
@@ -154,7 +179,7 @@ const UserTable = ({ data }) => {
   const Formtitle = ["User Details", "User Device Informaion", "Other"];
   return (
     <div>
-      {data.length !== 0 ? (
+      {userdata.length !== 0 ? (
         <div className="table-responsive">
           <table className="table  text-center  table-hover mt-3">
             <thead>
@@ -212,6 +237,7 @@ const UserTable = ({ data }) => {
                               <UserDetails
                                 formik={formik}
                                 handleChange={handleChange}
+
                               />
                             ) : page === 1 ? (
                               <UserId
@@ -224,10 +250,7 @@ const UserTable = ({ data }) => {
                                 handleChange={handleChange}
                               />
                             )}
-                          </Form>
-                        </Modal.Body>
-                        <Modal.Footer>
-                          <Button variant="secondary" className={page === 1 ? "ms-sm-0":null} onClick={handleClose}>
+                            <Button variant="secondary" className={page === 1 ? "ms-5 me-2 mt-2 ":"ms-5 mt-3"} onClick={handleClose}>
                             Close
                           </Button>
                           {page === 0 ? null : (
@@ -247,7 +270,7 @@ const UserTable = ({ data }) => {
                               className={
                                 page === 1
                                   ? "nextbutton mt-2   ms-lg-0 "
-                                  : "nextbutton mt-2 ms-3 "
+                                  : "nextbutton mt-3 ms-3 "
                               }
                               type="button"
                               onClick={(e) => handleNext(e)}
@@ -265,7 +288,9 @@ const UserTable = ({ data }) => {
                               Update
                             </Button>
                           )}
-                        </Modal.Footer>
+                          </Form>
+                        </Modal.Body>
+                        
                       </Modal>
                       <Button
                         variant=""
@@ -282,10 +307,8 @@ const UserTable = ({ data }) => {
           </table>
         </div>
       ) : (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+        <div className="d-flex justify-content-center">
+            <span className="">User Is Not Define...</span>
         </div>
       )}
     </div>

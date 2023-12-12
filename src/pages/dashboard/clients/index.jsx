@@ -4,6 +4,8 @@ import TableComponent from "../../../components/table";
 import api from "../../../services/api";
 import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
+import { IoMdAddCircle } from "react-icons/io";
+
 const Client = () => {
   const [data, setData] = useState([]);
   const [row, setRow] = useState([]);
@@ -52,21 +54,29 @@ const Client = () => {
       <Card className="m-2 h-100 border">
         <CardHeader className="fw-bold">Client</CardHeader>
         <CardBody>
-          <div className="d-flex flex-row justify-content-between ">
-            <input
-              className="outline-none col-6 rounded-2 border-1px px-2"
-              type="text"
-              placeholder="Filter Clients..."
-              value={filterText}
+        <div className="row d-flex justify-content-between">
+            <div className="col-sm-12 col-md-6 p-0">
+            <Button
+              className="adduser ms-3 p-1.8 btn-sm shadow"
+              variant="outline"
+              onClick={() => navigate("/dashboard/client/add")}
+            >
+              <IoMdAddCircle className="fs-3" />{" "}
+              Create Client 
+            </Button>
+             <Button variant="" className="activeuser mx-1 p-1.5  border-0 shadow">Active</Button>
+              <Button variant="" className="deleteuser border-0 p-1.5 shadow me-auto ">Deleted</Button>
+            </div>       
+            <div className="col-sm-12 p-2 col-md-6 text-end p-0"> 
+            <input 
+              className="input outline-none fs-5 col-lg-10 rounded-3 border-1px px-2 shadow-sm"
+              type="text" 
+              placeholder="Filter Users..."
+              value={filterText} 
               onChange={(e) => setFilterText(e.target.value)}
             />
-            <div>
-              <Button className="bg-success mx-2 border-0">Active</Button>
-              <Button className="bg-danger border-0">Deleted</Button>
+           
             </div>
-            <Button className="float-end" onClick={() => navigate('/dashboard/clients/add')}>
-              Add Client
-            </Button>
           </div>
           <TableComponent
             data={data.filter((item) => {

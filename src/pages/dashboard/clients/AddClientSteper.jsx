@@ -488,7 +488,7 @@ const handleChange = (e) => {
     <Card className="m-2">
       <CardHeader className="fw-bolder fs-4">{Formtitle[page]}</CardHeader>
       <CardBody>
-        <Form action="POST">
+        <Form >
           {PageDisplay()}
           {page === 0 ? null : (
             <Button

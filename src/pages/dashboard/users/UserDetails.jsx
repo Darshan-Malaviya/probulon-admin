@@ -5,70 +5,24 @@ const UserDetails = ({ formik, handleChange }) => {
       <div className="row d-flex p-0 m-2">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
           {" "}
-          <Form.Label className="">First Name :</Form.Label>
+          <Form.Label className=""> Name :</Form.Label>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Control
-          type="text"
-          id="firstName"
-          placeholder="Enter Your First Name"
-          className="col-6"
-          name="firstName"
-          autoFocus
-          value={formik.values.firstName}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        />
-         {formik.touched.firstName && formik.errors.firstName ? (
-          <div className="error ms-2 text-danger">{formik.errors.firstName}</div>
-        ) : null}
-        </div>
-      </div>
-
-      <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 p-0 ms-md-4">
-          {" "}
-          <Form.Label className="">Last Name :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Control
-          type="text"
-          id="lastName"
-          placeholder="Enter Your Last Name"
-          className="col-6"
-          name="lastName"
-          value={formik.values.lastName}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        />
-         {formik.touched.lastName && formik.errors.lastName ? (
-          <div className="error ms-2 text-danger">{formik.errors.lastName}</div>
-        ) : null}
-        </div>
-      </div>
-
-      <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">Name :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Control
-          type="text"
-          id="name"
-          placeholder="Enter Your Name"
-          className="col-6"
-          name="name"
-          value={formik.values.name}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        />
-         {formik.touched.name && formik.errors.name ? (
-          <div className="error ms-2 text-danger">{formik.errors.name}</div>
-        ) : null}
+          <Form.Control
+            type="text"
+            id="name"
+            placeholder="Enter Your Name"
+            className="col-6"
+            name="name"
+            autoFocus
+            value={formik.values.name}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.name && formik.errors.name ? (
+            <div className="error ms-2 text-danger">{formik.errors.name}</div>
+          ) : null}
         </div>
       </div>
 
@@ -78,43 +32,22 @@ const UserDetails = ({ formik, handleChange }) => {
           <Form.Label className="">Surname :</Form.Label>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Control
-          type="text"
-          id="name"
-          placeholder="Enter Your Surname"
-          className="col-6"
-          name="surname"
-          value={formik.values.surname}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        />
-         {formik.touched.surname && formik.errors.surname ? (
-          <div className="error ms-2 text-danger">{formik.errors.surname}</div>
-        ) : null}
-        </div>
-      </div>
-
-      <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">TipoDeDocument :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Control
-          type="text"
-          id="tipoDeDocument"
-          placeholder="Enter Your TipoDeDocument"
-          className="col-6"
-          name="tipoDeDocument"
-          value={formik.values.tipoDeDocument}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        />
-         {formik.touched.tipoDeDocument && formik.errors.tipoDeDocument ? (
-          <div className="error ms-2 text-danger">{formik.errors.tipoDeDocument}</div>
-        ) : null}
+          <Form.Control
+            type="text"
+            id="name"
+            placeholder="Enter Your Surname"
+            className="col-6"
+            name="surname"
+            value={formik.values.surname}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.surname && formik.errors.surname ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.surname}
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -124,20 +57,168 @@ const UserDetails = ({ formik, handleChange }) => {
           <Form.Label className="">LastSurname :</Form.Label>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Control
-          type="text"
-          id="lastSurname"
-          placeholder="Enter Your Last Surname"
-          className="col-6"
-          name="lastSurname"
-          value={formik.values.lastSurname}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        />
-         {formik.touched.lastSurname && formik.errors.lastSurname ? (
-          <div className="error ms-2 text-danger">{formik.errors.lastSurname}</div>
-        ) : null}
+          <Form.Control
+            type="text"
+            id="lastSurname"
+            placeholder="Enter Your Last Surname"
+            className="col-6"
+            name="lastSurname"
+            value={formik.values.lastSurname}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.lastSurname && formik.errors.lastSurname ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.lastSurname}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="row d-flex p-0 m-2">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label className="">Mobile :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Control
+            type="number"
+            id="mobile"
+            placeholder="Enter Your Mobile"
+            className="col-6"
+            name="mobile"
+            value={formik.values.mobile}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.mobile && formik.errors.mobile ? (
+            <div className="error ms-2 text-danger">{formik.errors.mobile}</div>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="row d-flex p-0 m-2">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label className="">secondaryMobile :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Control
+            type="number"
+            id="secondaryMobile"
+            placeholder="Enter Your secondaryMobile"
+            className="col-6"
+            name="secondaryMobile"
+            value={formik.values.secondaryMobile}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.secondaryMobile && formik.errors.secondaryMobile ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.secondaryMobile}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="row d-flex p-0 m-2">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label className="">Email :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Control
+            type="email"
+            id="email"
+            placeholder="Enter Your Email"
+            className="col-6"
+            name="email"
+            value={formik.values.email}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <div className="error ms-2 text-danger">{formik.errors.email}</div>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="row d-flex p-0 m-2">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label className="">SecondaryEmail :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Control
+            type="email"
+            id="secondaryEmail"
+            placeholder="Enter Your SecondaryEmail"
+            className="col-6"
+            name="secondaryEmail"
+            value={formik.values.secondaryEmail}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.secondaryEmail && formik.errors.secondaryEmail ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.secondaryEmail}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="row d-flex p-0 m-2">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label>Password :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Control
+            type="password"
+            id="password"
+            placeholder="Enter Your Password"
+            className="col-6"
+            name="password"
+            value={formik.values.password}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.password && formik.errors.password ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.password}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="row d-flex p-0 m-2">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label className="">DeviceId :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Control
+            type="text"
+            id="deviceId"
+            placeholder="Enter Your DeviceId"
+            className="col-6"
+            name="deviceId"
+            value={formik.values.deviceId}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          />
+          {formik.touched.deviceId && formik.errors.deviceId ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.deviceId}
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -147,58 +228,59 @@ const UserDetails = ({ formik, handleChange }) => {
           <Form.Label className="">Gender :</Form.Label>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Select
-          type="text"
-          id="gender"
-          placeholder="Enter Your Surname"
-          className="col-6"
-          name="gender"
-          value={formik.values.gender}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        >
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-       </Form.Select>
+          <Form.Select
+            type="text"
+            id="gender"
+            placeholder="Enter Your Surname"
+            className="col-6"
+            name="gender"
+            value={formik.values.gender}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          >
+            <option value="">Select Gender</option>
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+            <option value="3">Other</option>
+          </Form.Select>
 
-         {formik.touched.gender && formik.errors.gender ? (
-          <div className="error ms-2 text-danger">{formik.errors.gender}</div>
-        ) : null}
+          {formik.touched.gender && formik.errors.gender ? (
+            <div className="error ms-2 text-danger">{formik.errors.gender}</div>
+          ) : null}
         </div>
       </div>
-      
+
       <div className="row d-flex p-0 m-2 ">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
           {" "}
           <Form.Label className="">UserType :</Form.Label>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-        <Form.Select
-          type="text"
-          id="userType"
-          placeholder="Enter Your Surname"
-          className="col-6"
-          name="userType"
-          value={formik.values.userType}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          required
-        >
-         <option value="">Select UserType</option>
-          <option value="Client">Client</option>
-          <option value="User">User</option>
-          <option value="Admin">Admin</option>
-       </Form.Select>
+          <Form.Select
+            type="text"
+            id="userType"
+            placeholder="Enter Your Surname"
+            className="col-6"
+            name="userType"
+            value={formik.values.userType}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          >
+            <option value="">Select UserType</option>
+            <option value="1">Client</option>
+            <option value="2">User</option>
+            <option value="3">Admin</option>
+          </Form.Select>
 
-         {formik.touched.userType && formik.errors.userType ? (
-          <div className="error ms-2 text-danger">{formik.errors.userType}</div>
-        ) : null}
+          {formik.touched.userType && formik.errors.userType ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.userType}
+            </div>
+          ) : null}
         </div>
       </div>
-  
     </div>
   );
 };

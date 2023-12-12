@@ -7,11 +7,11 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Form,
+  
 } from "react-bootstrap";
 import { IoMdAddCircle } from "react-icons/io";
 import {  toast } from 'react-toastify';
-import TableComponent from "../../../components/table";
+// import TableComponent from "../../../components/table";
 import UserTable from "./UserTable";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
@@ -66,8 +66,8 @@ const Users = () => {
            
             </div>
           </div>
-
-          {data.length !== 0 ? (
+<div className="">
+{data.length > 0 ? (
             <UserTable
               data={data.filter((item) => {
                 if (filterText !== "")
@@ -80,6 +80,7 @@ const Users = () => {
           ) : (
             <h4 className="text-center m-3">Data is Not Valide....</h4>
           )}
+</div>   
         </CardBody>
       </Card>
     </>

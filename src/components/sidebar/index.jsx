@@ -11,7 +11,7 @@ function Sidebar({ routes, toggle }) {
   return (
     <div className={`sidebar border h-100 ${!toggle ? 'd-none' : ''}`} style={{"width": "20%"}}>
       <div className="sidebar-wrapper">
-        <div className="logo d-flex align-items-center justify-content-start border p-2 fw-bolder">
+        <div style={{backgroundColor:"rgb(46, 46, 63)",color:"white"}} className="logo d-flex align-items-center justify-content-start border p-2 fw-bolder">
           <span>Probulon</span>
         </div>
         <Nav className="flex-column">
@@ -19,8 +19,10 @@ function Sidebar({ routes, toggle }) {
             if (!prop.redirect)
               return (
                 <Nav.Item className={activeRoute(prop.path) ? "sidebar-tab-active" : ''} key={key}>
-                  <NavLink to={prop.path} className="sidebar-tab btn fw-bold d-flex justify-content-start">
-                    <span style={{"fontSize": "20px"}}>{prop.icon}</span>
+                  <NavLink to={prop.path} 
+                  style={{backgroundColor:"rgb(46, 46, 63)"}}
+                  className="sidebar-tab btn fw-bold d-flex justify-content-start" >
+                    <span style={{"fontSize": "20px",color:"#D0E1F9"}}>{prop.icon}</span>
                     <span className="mx-3" style={{"margin": "3px"}}>{prop.name}</span>
                   </NavLink>
                 </Nav.Item>

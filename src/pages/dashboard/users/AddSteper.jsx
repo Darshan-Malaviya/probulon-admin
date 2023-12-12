@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Card,
   CardHeader,
   CardBody,
   Button,
   Form,
-  FloatingLabel,
 } from "react-bootstrap";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
-import adddata from "./Fuatures/UserSlice";
 import * as Yup from "yup";
 import swal from "../../../components/sweetAlert";
 import UserDetails from "./UserDetails";
@@ -25,16 +22,14 @@ import api from "../../../services/api";
 import { toast } from "react-toastify";
 const AddSteper = () => {
   const [page, setPage] = useState(0);
-  // const [userupdate, setUserupdate] = useState();
+  const [userupdate, setUserupdate] = useState();
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      clientId: "",
-      typeOfCollaborator: "",
-      position: "",
       name: "",
+      clientId: "",
+      collaborator: "",
+      position: "",
       surname: "",
       lastSurname: "",
       mobile: "",
@@ -42,7 +37,7 @@ const AddSteper = () => {
       email: "",
       secondaryEmail: "",
       taxStatus: "",
-      tipoDeDocument: "",
+      documentType: "",
       idNumber: "",
       postalCode: "",
       town: "",
@@ -54,26 +49,40 @@ const AddSteper = () => {
       password: "",
       gender: "",
       userType: "",
+      startDate:"",
+      tarminationDate:"",
+      secondSupervisor:"",
+      thirdEmail:"",
+      supervisor:"",
+      technician:"",
+      fault:"",
+      timezone:"",
+      deviceStatus:"",
+      scheduleTime:"",
+      contactPerson:"",
+      address:"",
+      deviceNotes:""
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required("First Name is required"),
       lastName: Yup.string().required("LastName is required"),
       clientId: Yup.string().required("ClientId is required"),
-      typeOfCollaborator: Yup.string().required(
-        "TypeOfCollaborator is required"
+      collaborator: Yup.number().required(
+        "Collaborator is required"
       ),
-      position: Yup.string().required("Position is required"),
+      position: Yup.number().required("Position is required"),
       name: Yup.string().required("Name is required"),
       surname: Yup.string().required("Surname is required"),
       lastSurname: Yup.string().required("LastSurname is required"),
-      mobile: Yup.number().required("Mobile is required"),
-      secondaryMobile: Yup.number().required("SecondaryMobile is required"),
+      mobile: Yup.string().required("Mobile is required"),
+      secondaryMobile: Yup.string().required("SecondaryMobile is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
       secondaryEmail: Yup.string()
         .email("Invalid email")
         .required("SecondaryEmail is required"),
+       startDate:Yup.date().required("StartDate is required"),
+      tarminationDate:Yup.date().required("StartDate is required"),
       taxStatus: Yup.string().required("TaxStatus is required"),
-      tipoDeDocument: Yup.string().required("TipoDeDocument is required"),
+      documentType: Yup.string().required("documentType is required"),
       idNumber: Yup.string().required("IdNumber is required"),
       postalCode: Yup.string().required("PostalCode is required"),
       town: Yup.string().required("Town is required"),
@@ -81,16 +90,25 @@ const AddSteper = () => {
       country: Yup.string().required("country is required"),
       notes: Yup.string().required("notes is required"),
       taxAddress: Yup.string().required("taxAddress is required"),
-      deviceId: Yup.string().required("deviceId is required"),
+      deviceId: Yup.string().optional().min(24).max(24),
       password: Yup.string()
         .min(6, "Password is too short - should be 6 chars minimum")
         .required("password is required"),
       gender: Yup.string().required("gender is required"),
       userType: Yup.string().required("userType is required"),
     }),
-    onSubmit: (value) => {
+    onSubmit: async(value) => {
       console.log(value);
-      value && (toast.success("User Data Add SuccessFull") & navigate("/dashboard/users") )
+      try {
+        const resData = await api.post("http://79.143.90.196/api/v1/users/create",value);
+        console.log(resData)
+        if (resData.isSuccess) {
+          toast.success("User Data Add SuccessFull") 
+          navigate("/dashboard/users") 
+        } else toast.error(resData.message);
+      } catch (error) {
+        toast.error("User Data Not Add",error) 
+      }   
     },
   });
   const { handleChange, handleSubmit } = formik;
@@ -104,37 +122,48 @@ const AddSteper = () => {
 
     if (page === 0) {
       currentFields = [
-        "firstName",
-        "lastName",
-        "tipoDeDocument",
+        "deviceId",
+        "email",
         "lastSurname",
         "name",
+        "secondaryEmail",
+        "password",
         "surname",
         "userType",
         "gender",
+        "secondaryMobile",
+        "mobile",
       ];
     } else if (page === 1) {
       currentFields = [
         "clientId",
-        "deviceId",
-        "email",
-        "password",
+        "taxStatus",
+        "collaborator",
+        "idNumber",
+        "documentType",
+        "tarminationDate",
+        "startDate",
         "postalCode",
         "country",
         "town",
-        "secondaryEmail",
         "position",
       ];
     } else if (page === 2) {
       currentFields = [
-        "taxStatus",
         "province",
         "taxAddress",
         "notes",
-        "mobile",
-        "idNumber",
-        "secondaryMobile",
-        "typeOfCollaborator"
+        "secondSupervisor",
+        "thirdEmail",
+        "supervisor",
+        "technician",
+        "fault",
+        "timezone",
+        "deviceStatus",
+        "scheduleTime",
+        "contactPerson",
+        "address",
+        "deviceNotes"
       ];
     }
 
@@ -154,7 +183,7 @@ const AddSteper = () => {
     <Card className="m-2">
       <CardHeader className="fw-bolder fs-4">
         <Link to={"/dashboard/users"}>
-          <FaArrowLeftLong className="me-3 text-black" />
+          <FaArrowLeftLong style={{color:"rgb(46, 46, 63)"}} className="me-3 " />
         </Link>
         {Formtitle[page]}
       </CardHeader>
@@ -183,7 +212,7 @@ const AddSteper = () => {
             {page !== Formtitle.length - 1 ? (
               <Button
               variant=""
-                className={page === 1 ? "nextbutton mt-3   ms-lg-0 " : "nextbutton mt-2 ms-3 "}
+                className={page === 0 ? "nextbutton mt-3 ms-2 ms-lg-auto " : "nextbutton mt-3 ms-1 "}
                 type="button"
                 onClick={(e) => handleNext(e)}
               >
