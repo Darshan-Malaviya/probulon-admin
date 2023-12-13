@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Button,
-  Form,
-} from "react-bootstrap";
+import { Card, CardHeader, CardBody, Button, Form } from "react-bootstrap";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
 import { useFormik } from "formik";
@@ -23,7 +17,7 @@ import { toast } from "react-toastify";
 const AddSteper = () => {
   const [page, setPage] = useState(0);
   const [userupdate, setUserupdate] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -49,26 +43,23 @@ const AddSteper = () => {
       password: "",
       gender: "",
       userType: "",
-      startDate:"",
-      tarminationDate:"",
-      secondSupervisor:"",
-      thirdEmail:"",
-      supervisor:"",
-      technician:"",
-      fault:"",
-      timezone:"",
-      deviceStatus:"",
-      scheduleTime:"",
-      contactPerson:"",
-      address:"",
-      deviceNotes:""
+      startDate: "",
+      tarminationDate: "",
+      secondSupervisor: "",
+      thirdEmail: "",
+      supervisor: "",
+      technician: "",
+      fault: "",
+      timezone: "",
+      deviceStatus: "",
+      scheduleTime: "",
+      contactPerson: "",
+      address: "",
+      deviceNotes: "",
     },
     validationSchema: Yup.object({
-      lastName: Yup.string().required("LastName is required"),
       clientId: Yup.string().required("ClientId is required"),
-      collaborator: Yup.number().required(
-        "Collaborator is required"
-      ),
+      collaborator: Yup.number().required("Collaborator is required"),
       position: Yup.number().required("Position is required"),
       name: Yup.string().required("Name is required"),
       surname: Yup.string().required("Surname is required"),
@@ -79,8 +70,8 @@ const AddSteper = () => {
       secondaryEmail: Yup.string()
         .email("Invalid email")
         .required("SecondaryEmail is required"),
-       startDate:Yup.date().required("StartDate is required"),
-      tarminationDate:Yup.date().required("StartDate is required"),
+      startDate: Yup.date().required("StartDate is required"),
+      tarminationDate: Yup.date().required("StartDate is required"),
       taxStatus: Yup.string().required("TaxStatus is required"),
       documentType: Yup.string().required("documentType is required"),
       idNumber: Yup.string().required("IdNumber is required"),
@@ -96,19 +87,35 @@ const AddSteper = () => {
         .required("password is required"),
       gender: Yup.string().required("gender is required"),
       userType: Yup.string().required("userType is required"),
+      secondSupervisor: Yup.string().required("Second supervisor is required"),
+      thirdEmail: Yup.string()
+        .email("Invalid email format")
+        .required("Email is required"),
+      supervisor: Yup.string().required("Supervisor is required"),
+      technician: Yup.string().required("Technician is required"),
+      fault: Yup.string().required("Fault description is required"),
+      timezone: Yup.string().required("Timezone is required"),
+      deviceStatus: Yup.string().required("Device status is required"),
+      scheduleTime: Yup.string().required("Schedule time is required"),
+      contactPerson: Yup.string().required("Contact person is required"),
+      address: Yup.string().required("Address is required"),
+      deviceNotes: Yup.string().required("Device notes are required"),
     }),
-    onSubmit: async(value) => {
+    onSubmit: async (value) => {
       console.log(value);
       try {
-        const resData = await api.post("http://79.143.90.196/api/v1/users/create",value);
-        console.log(resData)
+        const resData = await api.post(
+          "http://79.143.90.196/api/v1/users/create",
+          value
+        );
+        console.log(resData);
         if (resData.isSuccess) {
-          toast.success("User Data Add SuccessFull") 
-          navigate("/dashboard/users") 
+          toast.success("User Data Add SuccessFull");
+          navigate("/dashboard/users");
         } else toast.error(resData.message);
       } catch (error) {
-        toast.error("User Data Not Add",error) 
-      }   
+        toast.error("User Data Not Add", error);
+      }
     },
   });
   const { handleChange, handleSubmit } = formik;
@@ -163,7 +170,7 @@ const AddSteper = () => {
         "scheduleTime",
         "contactPerson",
         "address",
-        "deviceNotes"
+        "deviceNotes",
       ];
     }
 
@@ -183,7 +190,10 @@ const AddSteper = () => {
     <Card className="m-2">
       <CardHeader className="fw-bolder fs-4">
         <Link to={"/dashboard/users"}>
-          <FaArrowLeftLong style={{color:"rgb(46, 46, 63)"}} className="me-3 " />
+          <FaArrowLeftLong
+            style={{ color: "rgb(46, 46, 63)" }}
+            className="me-3 "
+          />
         </Link>
         {Formtitle[page]}
       </CardHeader>
@@ -200,7 +210,7 @@ const AddSteper = () => {
           <div className="ms-sm-3.5 ms-md-4 ms-lg-5">
             {page === 0 ? null : (
               <Button
-              variant=""
+                variant=""
                 className="prevbutton mt-3 me-2 ms-3 ms-lg-0"
                 type="button"
                 onClick={() => handlePrev()}
@@ -211,8 +221,12 @@ const AddSteper = () => {
             {console.log(page, page !== Formtitle.length - 1)}
             {page !== Formtitle.length - 1 ? (
               <Button
-              variant=""
-                className={page === 0 ? "nextbutton mt-3 ms-2 ms-lg-auto " : "nextbutton mt-3 ms-1 "}
+                variant=""
+                className={
+                  page === 0
+                    ? "nextbutton mt-3 ms-2 ms-lg-auto "
+                    : "nextbutton mt-3 ms-1 "
+                }
                 type="button"
                 onClick={(e) => handleNext(e)}
               >

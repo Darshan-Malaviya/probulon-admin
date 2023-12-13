@@ -3,28 +3,7 @@ const Other = ({ formik, handleChange }) => {
   return (
     <div className="ms-2">
 
-<div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">ThirdEmail :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <Form.Control
-            type="email"
-            id="thirdEmail"
-            placeholder="Enter Your ThirdEmail"
-            className="col-6"
-            name="thirdEmail"
-            value={formik.values.thirdEmail}
-            onChange={handleChange}
-            onBlur={formik.handleBlur}
-            required
-          />
-          {formik.touched.thirdEmail && formik.errors.thirdEmail ? (
-            <div className="error ms-2 text-danger">{formik.errors.thirdEmail}</div>
-          ) : null}
-        </div>
-      </div>
+
 
 <div className="row d-flex p-0 m-2">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
@@ -41,7 +20,6 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.province}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
           />
           {formik.touched.province && formik.errors.province ? (
             <div className="error ms-2 text-danger">
@@ -66,7 +44,7 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.secondSupervisor}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
+            
           />
           {formik.touched.secondSupervisor && formik.errors.secondSupervisor ? (
             <div className="error ms-2 text-danger">{formik.errors.secondSupervisor}</div>
@@ -89,7 +67,7 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.supervisor}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
+            
           />
           {formik.touched.supervisor && formik.errors.supervisor ? (
             <div className="error ms-2 text-danger">{formik.errors.supervisor}</div>
@@ -113,7 +91,7 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.technician}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
+            
           />
           {formik.touched.technician && formik.errors.technician ? (
             <div className="error ms-2 text-danger">{formik.errors.technician}</div>
@@ -122,51 +100,9 @@ const Other = ({ formik, handleChange }) => {
       </div>
 
 
-      <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">Fault :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <Form.Control
-            type="text"
-            id="fault"
-            placeholder="Enter Your Fault"
-            className="col-6"
-            name="fault"
-            value={formik.values.fault}
-            onChange={handleChange}
-            onBlur={formik.handleBlur}
-            required
-          />
-          {formik.touched.fault && formik.errors.fault ? (
-            <div className="error ms-2 text-danger">{formik.errors.fault}</div>
-          ) : null}
-        </div>
-      </div>
+   
 
-      <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">Timezone :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <Form.Control
-            type="text"
-            id="timezone"
-            placeholder="Enter Your timezone"
-            className="col-6"
-            name="timezone"
-            value={formik.values.timezone}
-            onChange={handleChange}
-            onBlur={formik.handleBlur}
-            required
-          />
-          {formik.touched.timezone && formik.errors.timezone ? (
-            <div className="error ms-2 text-danger">{formik.errors.timezone}</div>
-          ) : null}
-        </div>
-      </div>
+
 
       <div className="row d-flex p-0 m-2 ">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
@@ -182,7 +118,7 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.deviceStatus}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
+            
           >
             <option value="">Select DeviceStatus</option>
             <option value="1">1 - </option>
@@ -214,7 +150,7 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.scheduleTime}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
+            
           />
           {formik.touched.scheduleTime && formik.errors.scheduleTime ? (
             <div className="error ms-2 text-danger">
@@ -224,33 +160,6 @@ const Other = ({ formik, handleChange }) => {
         </div>
       </div>
 
-      <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">TaxAddress :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <FloatingLabel type="text" name="taxAddress" className=" ">
-            <Form.Control
-              as="textarea"
-              id="taxAddress"
-              placeholder="Enter Your TaxAddress"
-              className="col-6"
-              name="taxAddress"
-              value={formik.values.taxAddress}
-              onChange={handleChange}
-              onBlur={formik.handleBlur}
-              required
-            />
-          </FloatingLabel>
-
-          {formik.touched.taxAddress && formik.errors.taxAddress ? (
-            <div className="error ms-2 text-danger">
-              {formik.errors.taxAddress}
-            </div>
-          ) : null}
-        </div>
-      </div>
 
 
       <div className="row d-flex p-0 m-2">
@@ -268,7 +177,6 @@ const Other = ({ formik, handleChange }) => {
             value={formik.values.contactPerson}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
           />
           {formik.touched.contactPerson && formik.errors.contactPerson ? (
             <div className="error ms-2 text-danger">{formik.errors.contactPerson}</div>
@@ -292,7 +200,6 @@ const Other = ({ formik, handleChange }) => {
               value={formik.values.address}
               onChange={handleChange}
               onBlur={formik.handleBlur}
-              required
             />
           </FloatingLabel>
 
@@ -304,36 +211,7 @@ const Other = ({ formik, handleChange }) => {
         </div>
       </div>
 
-      <div className="row d-flex p-0 m-2">  
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">Notes :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <FloatingLabel
-            type="text"
-            placeholder="Notes"
-            name="notes"
-            className="mb-3 "
-          >
-            <Form.Control
-              as="textarea"
-              id="notes"
-              placeholder="Enter Your Notes"
-              className="col-6"
-              name="notes"
-              value={formik.values.notes}
-              onChange={handleChange}
-              onBlur={formik.handleBlur}
-              required
-            />
-          </FloatingLabel>
 
-          {formik.touched.notes && formik.errors.notes ? (
-            <div className="error ms-2 text-danger">{formik.errors.notes}</div>
-          ) : null}
-        </div>
-      </div>
 
       <div className="row d-flex p-0 m-2">  
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
@@ -356,7 +234,7 @@ const Other = ({ formik, handleChange }) => {
               value={formik.values.deviceNotes}
               onChange={handleChange}
               onBlur={formik.handleBlur}
-              required
+              
             />
           </FloatingLabel>
 

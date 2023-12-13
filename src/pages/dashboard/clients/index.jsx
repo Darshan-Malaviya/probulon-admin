@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalBody, Form } from "react-bootstrap";
+import { Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalBody } from "react-bootstrap";
 import TableComponent from "../../../components/table";
 import api from "../../../services/api";
-import swal from "../../../components/sweetAlert";
+// import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
-
+import UserTable from "./UserTable";
 const Client = () => {
   const [data, setData] = useState([]);
   const [row, setRow] = useState([]);
@@ -13,32 +13,34 @@ const Client = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate()
   async function fetchUser() {
-    const resData = await api.get("/users/getAll");
+    const resData = await api.get("http://79.143.90.196/api/v1/users/getAll");
+    console.log(resData)
     if (resData.isSuccess) {
       setData(resData.data);
-    } else swal.error(resData.message);
+    } else toast.error(resData.message);
   }
+
   useEffect(() => {
     fetchUser();
   }, []);
-  const columns = [
-    {
-      name: "Name",
-      selector: (row) => row["firstName"],
-      sortable: true,
-    },
-    {
-      name: "Email",
-      selector: (row) => row["email"],
-      sortable: true,
-    },
-    {
-      name: "LastName",
-      selector: (row) => row["lastName"],
-      sortable: true,
-      right: "true",
-    },
-  ];
+  // const columns = [
+  //   {
+  //     name: "Name",
+  //     selector: (row) => row["firstName"],
+  //     sortable: true,
+  //   },
+  //   {
+  //     name: "Email",
+  //     selector: (row) => row["email"],
+  //     sortable: true,
+  //   },
+  //   {
+  //     name: "LastName",
+  //     selector: (row) => row["lastName"],
+  //     sortable: true,
+  //     right: "true",
+  //   },
+  // ];
 
   function handleSelectedRow(state) {
     setRow(state.selectedRows);
@@ -52,14 +54,14 @@ const Client = () => {
         </ModalBody>
       </Modal>
       <Card className="m-2 h-100 border">
-        <CardHeader className="fw-bold">Client</CardHeader>
+        <CardHeader className="fw-bold ms-2 ">Client</CardHeader>
         <CardBody>
         <div className="row d-flex justify-content-between">
             <div className="col-sm-12 col-md-6 p-0">
             <Button
               className="adduser ms-3 p-1.8 btn-sm shadow"
               variant="outline"
-              onClick={() => navigate("/dashboard/client/add")}
+              onClick={() => navigate("/dashboard/clients/add")}
             >
               <IoMdAddCircle className="fs-3" />{" "}
               Create Client 
@@ -70,15 +72,26 @@ const Client = () => {
             <div className="col-sm-12 p-2 col-md-6 text-end p-0"> 
             <input 
               className="input outline-none fs-5 col-lg-10 rounded-3 border-1px px-2 shadow-sm"
-              type="text" 
+              type="search" 
               placeholder="Filter Users..."
               value={filterText} 
               onChange={(e) => setFilterText(e.target.value)}
-            />
-           
+            />    
             </div>
           </div>
-          <TableComponent
+          {data.length > 0 ? (
+            <UserTable
+              data={data.filter((item) => {
+                if (filterText !== "")
+                  return item.name
+                    .toLowerCase()
+                    .includes(filterText.toLowerCase());
+                return item;
+              })}
+            />
+          ) : 
+            <h4 className="text-center mt-3">Data is Not Valide....</h4>
+          }          {/* <TableComponent
             data={data.filter((item) => {
               if (filterText !== "")
                 return item.firstName
@@ -88,7 +101,7 @@ const Client = () => {
             })}
             columns={columns}
             handleSelectedRow={handleSelectedRow}
-          />
+          /> */}
         </CardBody>
       </Card>
     </>

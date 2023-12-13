@@ -9,7 +9,7 @@ function Sidebar({ routes, toggle }) {
   };
 
   return (
-    <div className={`sidebar border h-100 ${!toggle ? 'd-none' : ''}`} style={{"width": "20%"}}>
+    <div className={`sidebar border h-100  ${!toggle ? 'd-none' : ''}`} style={{"width": "20%"}}>
       <div className="sidebar-wrapper">
         <div style={{backgroundColor:"rgb(46, 46, 63)",color:"white"}} className="logo d-flex align-items-center justify-content-start border p-2 fw-bolder">
           <span>Probulon</span>

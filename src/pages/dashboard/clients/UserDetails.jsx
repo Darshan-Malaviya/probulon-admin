@@ -251,36 +251,6 @@ const UserDetails = ({ formik, handleChange }) => {
         </div>
       </div>
 
-      <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
-          {" "}
-          <Form.Label className="">UserType :</Form.Label>
-        </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <Form.Select
-            type="text"
-            id="userType"
-            placeholder="Enter Your Surname"
-            className="col-6"
-            name="userType"
-            value={formik.values.userType}
-            onChange={handleChange}
-            onBlur={formik.handleBlur}
-            required
-          >
-            <option value="">Select UserType</option>
-            <option value="1">Client</option>
-            <option value="2">User</option>
-            <option value="3">Admin</option>
-          </Form.Select>
-
-          {formik.touched.userType && formik.errors.userType ? (
-            <div className="error ms-2 text-danger">
-              {formik.errors.userType}
-            </div>
-          ) : null}
-        </div>
-      </div>
     </div>
   );
 };

@@ -57,3 +57,10 @@
     background-color: rgb(46, 46, 63);
     
 }
+.searchInput {
+    border: none;
+    border-bottom: 1px solid black; /* Change the color as needed */
+    width: 80%; /* Adjust width as needed */
+    font-size: 1.2em; /* Adjust font size as needed */
+    padding-bottom: 5px;
+  }

@@ -4,9 +4,6 @@ import {
   CardHeader,
   CardBody,
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
   
 } from "react-bootstrap";
 import { IoMdAddCircle } from "react-icons/io";
@@ -23,7 +20,7 @@ const Users = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   async function fetchUser() {
-    const resData = await api.get("http://79.143.90.196/api/v1/users/getAll");
+    const resData = await api.get("http://localhost:3000/api/v1/users/getAll");
     console.log(resData)
     if (resData.isSuccess) {
       setData(resData.data);
@@ -34,14 +31,10 @@ const Users = () => {
   }, []);
 
   return (
-    <>
-      <Modal show={show}>
-        <ModalHeader>Add New User</ModalHeader>
-        <ModalBody></ModalBody>
-      </Modal>
       <Card className="m-2 h-100  border">
         <CardHeader className="fw-bold ">Users</CardHeader>
         <CardBody>
+        <div>
           <div className="row d-flex justify-content-between">
             <div className="col-sm-12 col-md-6 p-0">
             <Button
@@ -57,17 +50,16 @@ const Users = () => {
             </div>       
             <div className="col-sm-12 p-2 col-md-6 text-end p-0"> 
             <input 
-              className="input outline-none fs-5 col-lg-10 rounded-3 border-1px px-2 shadow-sm"
-              type="text" 
-              placeholder="Filter Users..."
+              className="searchInput px-3 pt-1 fs-5 col-lg-10 rounded-5 ps-3 shadow-sm"
+              type="search" 
+              placeholder="Search..."
               value={filterText} 
               onChange={(e) => setFilterText(e.target.value)}
             />
            
             </div>
           </div>
-<div className="">
-{data.length > 0 ? (
+        {data.length > 0 ? (
             <UserTable
               data={data.filter((item) => {
                 if (filterText !== "")
@@ -77,13 +69,12 @@ const Users = () => {
                 return item;
               })}
             />
-          ) : (
-            <h4 className="text-center m-3">Data is Not Valide....</h4>
-          )}
-</div>   
+          ) : 
+            <h4 className="text-center mt-3">Data is Not Valide....</h4>
+          }
+          </div>
         </CardBody>
       </Card>
-    </>
   );
 };
 

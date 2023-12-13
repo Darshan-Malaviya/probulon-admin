@@ -24,7 +24,7 @@ import Other from "./Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
-import "./index.css";
+// import "./index.css";
 const UserTable = ({ data }) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
@@ -35,6 +35,7 @@ const UserTable = ({ data }) => {
       const resData = await api.get(`http://79.143.90.196/api/v1/users/getById?userId=${id}`);
       if (resData.isSuccess) {
         console.log(resData,"-----getid")
+        setUpdateuser(resData.data)
         setShow(true);
       } else toast.error(resData.message);
     } catch (error) {
@@ -117,6 +118,7 @@ const UserTable = ({ data }) => {
       }
     },
   });
+
   const { handleChange, handleSubmit } = formik;
 
   const handleDelete = async (id) => {
@@ -187,8 +189,8 @@ const UserTable = ({ data }) => {
   return (
         <Card >
         <CardBody>
-        <div className="table-responsive ">
-          <table  className="table  text-center table-hover ">
+        <div className="table-responsive">
+          <table className="table  text-center  table-hover ">
             <thead>
               <tr>
                 <th>#IdNumber</th>
