@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 // import Button from "react-bootstrap/Button";
@@ -18,30 +18,33 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import UserDetails from "./UserDetails";
-import UserId from "./UserId";
-import Other from "./Other";
+import UserDetails from "./UpdateUsers/UserDetails";
+import UserId from "./UpdateUsers/UserId";
+import Other from "./UpdateUsers/Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 const UserTable = ({ data }) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
   const [updateuser, setUpdateuser] = useState([]);
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
-  const handleShow = async(id) => {
+
+  const handleShow = async (id) => {
     try {
-      const resData = await api.get(`http://79.143.90.196/api/v1/users/getById?userId=${id}`);
+      const resData = await api.get(`/users/getById?userId=${id}`);
       if (resData.isSuccess) {
-        console.log(resData,"-----getid")
+        console.log(resData, "-----getid");
         setShow(true);
       } else toast.error(resData.message);
     } catch (error) {
-      toast.error(error) 
-    }    
+      toast.error(error);
+    }
   };
-  console.log(updateuser)
+  console.log(updateuser);
   const formik = useFormik({
     initialValues: {
       firstName: updateuser.firstName,
@@ -103,17 +106,20 @@ const UserTable = ({ data }) => {
       gender: Yup.string().required("gender is required"),
       userType: Yup.string().required("userType is required"),
     }),
-    onSubmit: async(value) => {
+    onSubmit: async (value) => {
       console.log(value);
       try {
-        const resData = await api.put("http://79.143.90.196/api/v1/users/update",value);
-        console.log(resData)
+        const resData = await api.put(
+          "http://79.143.90.196/api/v1/users/update",
+          value
+        );
+        console.log(resData);
         if (resData.isSuccess) {
-          toast.success("User Data Update SuccessFull") 
-          navigate("/dashboard/users") 
+          toast.success("User Data Update SuccessFull");
+          navigate("/dashboard/users");
         } else toast.error(resData.message);
       } catch (error) {
-        toast.error("User Data Not Update",error) 
+        toast.error("User Data Not Update", error);
       }
     },
   });
@@ -121,15 +127,16 @@ const UserTable = ({ data }) => {
 
   const handleDelete = async (id) => {
     try {
-      const resData = await api.delete(`http://79.143.90.196/api/v1/users/delete?userId=${id}`);
-      console.log(resData)
+      const resData = await api.delete(`/users/delete?userId=${id}`);
       if (resData.isSuccess) {
-
+        navigate("/dashboard/users")
       } else toast.error(resData.message);
     } catch (error) {
-      toast.error(error)
+      toast.error(error);
     }
   };
+  const Formtitle = ["User Details", "User Device Informaion", "Other"];
+
   const handleNext = (e) => {
     e.preventDefault();
     const errors = Object.keys(formik.errors);
@@ -137,37 +144,48 @@ const UserTable = ({ data }) => {
 
     if (page === 0) {
       currentFields = [
-        "firstName",
-        "lastName",
-        "tipoDeDocument",
+        // "deviceId",
+        "email",
         "lastSurname",
         "name",
+        "secondaryEmail",
+        "password",
         "surname",
-        "userType",
+        // "userType",
         "gender",
+        "secondaryMobile",
+        "mobile",
       ];
     } else if (page === 1) {
       currentFields = [
-        "clientId",
-        "deviceId",
-        "email",
-        "password",
+        // "clientId",
+        "taxStatus",
+        "collaborator",
+        "idNumber",
+        "documentType",
+        // "tarminationDate",
+        "startDate",
         "postalCode",
         "country",
         "town",
-        "secondaryEmail",
-        "position",
+        // "position",
       ];
     } else if (page === 2) {
       currentFields = [
-        "taxStatus",
-        "province",
+        // "province",
         "taxAddress",
         "notes",
-        "mobile",
-        "idNumber",
-        "secondaryMobile",
-        "typeOfCollaborator",
+        // "secondSupervisor",
+        // "thirdEmail",
+        // "supervisor",
+        // "technician",
+        // "fault",
+        "timezone",
+        // "deviceStatus",
+        "scheduleTime",
+        // "contactPerson",
+        // "address",
+        // "deviceNotes",
       ];
     }
 
@@ -183,12 +201,11 @@ const UserTable = ({ data }) => {
   const handlePrev = () => {
     setPage((cur) => cur - 1);
   };
-  const Formtitle = ["User Details", "User Device Informaion", "Other"];
   return (
-        <Card >
-        <CardBody>
+    <Card>
+      <CardBody>
         <div className="table-responsive ">
-          <table  className="table  text-center table-hover ">
+          <table className="table  text-center table-hover ">
             <thead>
               <tr>
                 <th>#IdNumber</th>
@@ -223,7 +240,17 @@ const UserTable = ({ data }) => {
                     <td>{value.gender}</td>
                     <td>{value.mobile}</td>
                     <td>{value.taxStatusText}</td>
-                      <td>{value.statusText === "Active" ? (<Button className="btn btn-success btn-sm">{value.statusText}</Button>):(<Button className="btn btn-danger btn-sm">{value.statusText}</Button>)}</td>
+                    <td>
+                      {value.statusText === "Active" ? (
+                        <Button className="btn btn-success btn-sm">
+                          {value.statusText}
+                        </Button>
+                      ) : (
+                        <Button className="btn btn-danger btn-sm">
+                          {value.statusText}
+                        </Button>
+                      )}
+                    </td>
                     <td className="d-flex text-center ">
                       <Button
                         variant=""
@@ -244,7 +271,6 @@ const UserTable = ({ data }) => {
                               <UserDetails
                                 formik={formik}
                                 handleChange={handleChange}
-
                               />
                             ) : page === 1 ? (
                               <UserId
@@ -257,47 +283,51 @@ const UserTable = ({ data }) => {
                                 handleChange={handleChange}
                               />
                             )}
-                            <Button variant="secondary" className={page === 1 ? "ms-5 me-2 mt-2 ":"ms-5 mt-3"} onClick={handleClose}>
-                            Close
-                          </Button>
-                          {page === 0 ? null : (
                             <Button
-                              variant=""
-                              className="prevbutton mt-2 me-2 ms-3 ms-lg-0"
-                              type="button"
-                              onClick={() => handlePrev()}
-                            >
-                              <GrFormPrevious /> Prev Form
-                            </Button>
-                          )}
-                          {console.log(page, page !== Formtitle.length - 1)}
-                          {page !== Formtitle.length - 1 ? (
-                            <Button
-                              variant=""
+                              variant="secondary"
                               className={
-                                page === 1
-                                  ? "nextbutton mt-2   ms-lg-0 "
-                                  : "nextbutton mt-3 ms-3 "
+                                page === 1 ? "ms-5 me-2 mt-2 " : "ms-4 mt-3"
                               }
-                              type="button"
-                              onClick={(e) => handleNext(e)}
+                              onClick={handleClose}
                             >
-                              {" "}
-                              Next Form <MdNavigateNext />
+                              Close
                             </Button>
-                          ) : (
-                            <Button
-                              variant=""
-                              className="nextbutton mt-3 ms-2"
-                              type="submit"
-                            >
-                              {" "}
-                              Update
-                            </Button>
-                          )}
+                            {page === 0 ? null : (
+                              <Button
+                                variant=""
+                                className="prevbutton mt-2 me-2 ms-3 "
+                                type="button"
+                                onClick={() => handlePrev()}
+                              >
+                                <GrFormPrevious /> Prev Form    
+                              </Button>
+                            )}
+                            {page !== Formtitle.length - 1 ? (
+                              <Button
+                                variant=""
+                                className={
+                                  page === 1
+                                    ? "nextbutton mt-2  "
+                                    : "nextbutton mt-3 ms-3 "
+                                }
+                                type="button"
+                                onClick={(e) => handleNext(e)}
+                              >
+                                {" "}
+                                Next Form <MdNavigateNext />
+                              </Button>
+                            ) : (
+                              <Button
+                                variant=""
+                                className="nextbutton mt-3 ms-2"
+                                type="submit"
+                              >
+                                {" "}
+                                Update
+                              </Button>
+                            )}
                           </Form>
                         </Modal.Body>
-                        
                       </Modal>
                       <Button
                         variant=""
@@ -313,8 +343,8 @@ const UserTable = ({ data }) => {
             </tbody>
           </table>
         </div>
-        </CardBody>
-        </Card>
+      </CardBody>
+    </Card>
   );
 };
 

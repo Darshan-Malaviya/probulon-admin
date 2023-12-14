@@ -3,16 +3,16 @@ const UserDetails = ({ formik, handleChange }) => {
   return (
     <div className="ms-2">
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className=""> Name :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="name"
             placeholder="Enter Your Name"
-            className="col-6"
+            className="col-8"
             name="name"
             autoFocus
             value={formik.values.name}
@@ -27,11 +27,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Surname :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="surname"
@@ -52,11 +52,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">LastSurname :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="lastSurname"
@@ -77,11 +77,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Mobile :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="mobile"
@@ -100,11 +100,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
-          <Form.Label className="">secondaryMobile :</Form.Label>
+          <Form.Label className="">SecondaryMobile:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="secondaryMobile"
@@ -125,11 +125,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Email :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="email"
             id="email"
@@ -148,11 +148,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
-          <Form.Label className="">SecondaryEmail :</Form.Label>
+          <Form.Label className="">SecondaryEmail:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="email"
             id="secondaryEmail"
@@ -173,11 +173,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label>Password :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="password"
             id="password"
@@ -198,11 +198,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">DeviceId :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="deviceId"
@@ -223,11 +223,11 @@ const UserDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Gender :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Select
             type="text"
             id="gender"

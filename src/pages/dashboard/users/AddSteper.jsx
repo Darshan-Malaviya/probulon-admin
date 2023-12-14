@@ -21,9 +21,9 @@ const AddSteper = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
-      clientId: "",
+      // clientId: "",
       collaborator: "",
-      position: "",
+      // position: "",
       surname: "",
       lastSurname: "",
       mobile: "",
@@ -35,32 +35,32 @@ const AddSteper = () => {
       idNumber: "",
       postalCode: "",
       town: "",
-      province: "",
+      // province: "",
       country: "",
       taxAddress: "",
       notes: "",
-      deviceId: "",
+      // deviceId: "",
       password: "",
       gender: "",
-      userType: "",
-      startDate: "",
-      tarminationDate: "",
-      secondSupervisor: "",
-      thirdEmail: "",
-      supervisor: "",
-      technician: "",
-      fault: "",
+      // userType: "",
+      // startDate: "",
+      // tarminationDate: "",
+      // secondSupervisor: "",
+      // thirdEmail: "",
+      // supervisor: "",
+      // technician: "",
+      // fault: "",
       timezone: "",
-      deviceStatus: "",
+      // deviceStatus: "",
       scheduleTime: "",
-      contactPerson: "",
-      address: "",
-      deviceNotes: "",
+      // contactPerson: "",
+      // address: "",
+      // deviceNotes: "",
     },
     validationSchema: Yup.object({
-      clientId: Yup.string().required("ClientId is required"),
+      // clientId: Yup.string().required("ClientId is required"),
       collaborator: Yup.number().required("Collaborator is required"),
-      position: Yup.number().required("Position is required"),
+      // position: Yup.string().required("Position is required"),
       name: Yup.string().required("Name is required"),
       surname: Yup.string().required("Surname is required"),
       lastSurname: Yup.string().required("LastSurname is required"),
@@ -70,43 +70,46 @@ const AddSteper = () => {
       secondaryEmail: Yup.string()
         .email("Invalid email")
         .required("SecondaryEmail is required"),
-      startDate: Yup.date().required("StartDate is required"),
-      tarminationDate: Yup.date().required("StartDate is required"),
+      // startDate: Yup.date().required("StartDate is required"),
+      // tarminationDate: Yup.date().optional(),
       taxStatus: Yup.string().required("TaxStatus is required"),
       documentType: Yup.string().required("documentType is required"),
       idNumber: Yup.string().required("IdNumber is required"),
       postalCode: Yup.string().required("PostalCode is required"),
       town: Yup.string().required("Town is required"),
-      province: Yup.string().required("province is required"),
+      // province: Yup.string().required("province is required"),
       country: Yup.string().required("country is required"),
       notes: Yup.string().required("notes is required"),
       taxAddress: Yup.string().required("taxAddress is required"),
-      deviceId: Yup.string().optional().min(24).max(24),
+      // deviceId: Yup.string().optional().min(24).max(24),
       password: Yup.string()
         .min(6, "Password is too short - should be 6 chars minimum")
         .required("password is required"),
       gender: Yup.string().required("gender is required"),
-      userType: Yup.string().required("userType is required"),
-      secondSupervisor: Yup.string().required("Second supervisor is required"),
-      thirdEmail: Yup.string()
-        .email("Invalid email format")
-        .required("Email is required"),
-      supervisor: Yup.string().required("Supervisor is required"),
-      technician: Yup.string().required("Technician is required"),
-      fault: Yup.string().required("Fault description is required"),
+      // userType: Yup.string().required("userType is required"),
+      // secondSupervisor: Yup.string().required("Second supervisor is required"),
+      // thirdEmail: Yup.string()
+      //   .email("Invalid email format")
+      //   .required("Email is required"),
+      // supervisor: Yup.string().required("Supervisor is required"),
+      // technician: Yup.string().required("Technician is required"),
+      // fault: Yup.string().required("Fault description is required"),
       timezone: Yup.string().required("Timezone is required"),
-      deviceStatus: Yup.string().required("Device status is required"),
+      // deviceStatus: Yup.string().required("Device status is required"),
       scheduleTime: Yup.string().required("Schedule time is required"),
-      contactPerson: Yup.string().required("Contact person is required"),
-      address: Yup.string().required("Address is required"),
-      deviceNotes: Yup.string().required("Device notes are required"),
+      // contactPerson: Yup.string().required("Contact person is required"),
+      // address: Yup.string().required("Address is required"),
+      // deviceNotes: Yup.string().required("Device notes are required"),
     }),
     onSubmit: async (value) => {
-      console.log(value);
+      const adduser = {
+        ...value,userType:"1"
+      }
+      console.log(adduser)
       try {
         const resData = await api.post(
-          "http://79.143.90.196/api/v1/users/create",
-          value
+          "/users/create",
+          adduser
         );
         console.log(resData);
         if (resData.isSuccess) {
@@ -129,48 +132,48 @@ const AddSteper = () => {
 
     if (page === 0) {
       currentFields = [
-        "deviceId",
+        // "deviceId",
         "email",
         "lastSurname",
         "name",
         "secondaryEmail",
         "password",
         "surname",
-        "userType",
+        // "userType",
         "gender",
         "secondaryMobile",
         "mobile",
       ];
     } else if (page === 1) {
       currentFields = [
-        "clientId",
+        // "clientId",
         "taxStatus",
         "collaborator",
         "idNumber",
         "documentType",
-        "tarminationDate",
+        // "tarminationDate",
         "startDate",
         "postalCode",
         "country",
         "town",
-        "position",
+        // "position",
       ];
     } else if (page === 2) {
       currentFields = [
-        "province",
+        // "province",
         "taxAddress",
         "notes",
-        "secondSupervisor",
-        "thirdEmail",
-        "supervisor",
-        "technician",
-        "fault",
+        // "secondSupervisor",
+        // "thirdEmail",
+        // "supervisor",
+        // "technician",
+        // "fault",
         "timezone",
-        "deviceStatus",
+        // "deviceStatus",
         "scheduleTime",
-        "contactPerson",
-        "address",
-        "deviceNotes",
+        // "contactPerson",
+        // "address",
+        // "deviceNotes",
       ];
     }
 

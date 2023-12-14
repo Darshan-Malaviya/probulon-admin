@@ -25,7 +25,7 @@ const NavBar = ({ toggle, setToggle }) => {
   };
 
   return (
-    <nav className="navbar w-100  nav">
+    <nav className="navbar w-100 fixed-top  nav">
       <Button
       variant=""
         className="navopentogle p-1 ms-2 my-0 text-white border-0"

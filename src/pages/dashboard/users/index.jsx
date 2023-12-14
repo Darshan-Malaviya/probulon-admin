@@ -20,7 +20,7 @@ const Users = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   async function fetchUser() {
-    const resData = await api.get("http://localhost:3000/api/v1/users/getAll");
+    const resData = await api.get("/users/getAll");
     console.log(resData)
     if (resData.isSuccess) {
       setData(resData.data);
@@ -68,6 +68,7 @@ const Users = () => {
                     .includes(filterText.toLowerCase());
                 return item;
               })}
+            
             />
           ) : 
             <h4 className="text-center mt-3">Data is Not Valide....</h4>

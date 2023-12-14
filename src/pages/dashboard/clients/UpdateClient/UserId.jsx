@@ -4,11 +4,11 @@ const UserId = ({ formik, handleChange }) => {
   return (
     <div className="ms-2">
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Collaborator :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Select
             type="text"
             id="collaborator"
@@ -33,11 +33,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">TaxStatus :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Select
             type="text"
             id="taxStatus"
@@ -67,11 +67,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">PostalCode :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="postalCode"
@@ -92,11 +92,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Country :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="country"
@@ -117,11 +117,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Town :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="town"
@@ -140,11 +140,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
-          <Form.Label className="">DocumentType :</Form.Label>
+          <Form.Label className="">DocumentType:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Select
             type="text"
             id="documentType"
@@ -170,11 +170,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Id Number :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="idNumber"
@@ -195,11 +195,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">ThirdEmail :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="email"
             id="thirdEmail"
@@ -220,11 +220,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Notes :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <FloatingLabel
             type="text"
             placeholder="Notes"
@@ -251,11 +251,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Timezone :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <Form.Control
             type="text"
             id="timezone"
@@ -276,11 +276,11 @@ const UserId = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">TaxAddress :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
           <FloatingLabel type="text" name="taxAddress" className=" ">
             <Form.Control
               as="textarea"

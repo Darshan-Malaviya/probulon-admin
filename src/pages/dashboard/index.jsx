@@ -43,12 +43,12 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="d-flex flex-row h-100 dashboard">
+      <div className="d-flex flex-row mt-5 h-100 dashboard">
         <Sidebar routes={routes} toggle={toggle} />
         <div className="d-flex flex-column w-100">
           <NavBar toggle={toggle} setToggle={setToggle} />
-          <div className="m-2 card rounded-2">
-            <nav aria-label="breadcrumb">
+          <div className="m-2 mt-4 card rounded-2">
+            <nav aria-label="breadcrumb ">
               <ol className="d-flex justify-content-start align-content-center h-100 breadcrumb">
                 <li className="px-2 breadcrumb-item">
                   <FaHome className="homeicon fs-4"/>

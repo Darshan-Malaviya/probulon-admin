@@ -83,7 +83,7 @@ const UserDetails = ({ formik, handleChange }) => {
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
           <Form.Control
-            type="number"
+            type="text"
             id="mobile"
             placeholder="Enter Your Mobile"
             className="col-6"
@@ -106,7 +106,7 @@ const UserDetails = ({ formik, handleChange }) => {
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
           <Form.Control
-            type="number"
+            type="text"
             id="secondaryMobile"
             placeholder="Enter Your secondaryMobile"
             className="col-6"
@@ -197,7 +197,7 @@ const UserDetails = ({ formik, handleChange }) => {
         </div>
       </div>
 
-      <div className="row d-flex p-0 m-2">
+      {/* <div className="row d-flex p-0 m-2">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
           {" "}
           <Form.Label className="">DeviceId :</Form.Label>
@@ -220,7 +220,7 @@ const UserDetails = ({ formik, handleChange }) => {
             </div>
           ) : null}
         </div>
-      </div>
+      </div> */}
 
       <div className="row d-flex p-0 m-2 ">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
@@ -251,7 +251,7 @@ const UserDetails = ({ formik, handleChange }) => {
         </div>
       </div>
 
-      <div className="row d-flex p-0 m-2 ">
+      {/* <div className="row d-flex p-0 m-2 ">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
           {" "}
           <Form.Label className="">UserType :</Form.Label>
@@ -280,7 +280,7 @@ const UserDetails = ({ formik, handleChange }) => {
             </div>
           ) : null}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

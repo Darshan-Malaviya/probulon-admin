@@ -91,17 +91,19 @@ const AddClientSteper = () => {
       deviceNotes: Yup.string().required("Device notes are required"),
     }),
     onSubmit: async (value) => {
-      const addclient = {...value,userType:"1",startDate:"1-1-2024",terminationDate:"15-2-2024"}
+      const addclient = {
+        ...value,
+        userType: "1",
+        startDate: "1-1-2024",
+        terminationDate: "15-2-2024",
+      };
       console.log(addclient);
       try {
-        const resData = await api.post(
-          "http://79.143.90.196/api/v1/users/create",
-          addclient
-        );
+        const resData = await api.post("/users/create", addclient);
         console.log(resData);
         if (resData.isSuccess) {
           toast.success("Client Create SuccessFull");
-          navigate("/dashboard/client");
+          navigate("/dashboard/clients");
         } else toast.error(resData.message);
       } catch (error) {
         toast.error("User Data Not Add", error);
@@ -143,7 +145,6 @@ const AddClientSteper = () => {
         "notes",
         "timezone",
         "taxAddress",
-
       ];
     } else if (page === 2) {
       currentFields = [
@@ -174,7 +175,7 @@ const AddClientSteper = () => {
   return (
     <Card className="m-2">
       <CardHeader className="fw-bolder fs-4">
-        <Link to={"/dashboard/users"}>
+        <Link to={"/dashboard/clients"}>
           <FaArrowLeftLong
             style={{ color: "rgb(46, 46, 63)" }}
             className="me-3 "
