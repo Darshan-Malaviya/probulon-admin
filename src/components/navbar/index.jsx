@@ -25,7 +25,9 @@ const NavBar = ({ toggle, setToggle }) => {
   };
 
   return (
-    <nav className="navbar w-100 fixed-top  nav">
+    <div className="container">
+
+    <nav className={toggle ? "navbar w-auto shadow-sm fixed-top  nav":"navbar w-auto shadow-sm fixed-top  nav"}>
       <Button
       variant=""
         className="navopentogle p-1 ms-2 my-0 text-white border-0"
@@ -35,7 +37,7 @@ const NavBar = ({ toggle, setToggle }) => {
         {!toggle ? (
           <RxHamburgerMenu className="m-2 fw-bold fs-4" />
         ) : (
-          <GrClose className="m-2 fw-bold " />
+          <GrClose className="m-2 fw-bold" />
         )}
       </Button>
       <Dropdown align="end" show={showDropdown} onToggle={handleDropdownToggle}>
@@ -63,6 +65,8 @@ const NavBar = ({ toggle, setToggle }) => {
         <FaUserCircle className="profile " onClick={handleDropdownToggle}/>
       </Dropdown>
     </nav>
+    </div>
+
   );
 };
 

@@ -13,7 +13,7 @@ import api from "../../../services/api";
 // import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
-import UserTable from "./UserTable";
+import ClientTable from "./ClientTable";
 const Client = () => {
   const [data, setData] = useState([]);
   const [row, setRow] = useState([]);
@@ -22,7 +22,6 @@ const Client = () => {
   const navigate = useNavigate();
   async function fetchUser() {
     const resData = await api.get("/users/getAll");
-    console.log(resData);
     if (resData.isSuccess) {
       setData(resData.data);
     } else toast.error(resData.message);
@@ -31,41 +30,19 @@ const Client = () => {
   useEffect(() => {
     fetchUser();
   }, []);
-  // const columns = [
-  //   {
-  //     name: "Name",
-  //     selector: (row) => row["firstName"],
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "Email",
-  //     selector: (row) => row["email"],
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "LastName",
-  //     selector: (row) => row["lastName"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  // ];
 
   function handleSelectedRow(state) {
     setRow(state.selectedRows);
   }
   return (
-    <>
-      <Modal show={show}>
-        <ModalHeader>Add New Client</ModalHeader>
-        <ModalBody></ModalBody>
-      </Modal>
-      <Card className="m-2 h-100 border w-auto">
-        <CardHeader className="fw-bold ms-2 ">Client</CardHeader>
-        <CardBody>
+    <Card className="m-2 h-100 border w-auto">
+      <CardHeader className="fw-bold  ps-3">Client</CardHeader>
+      <CardBody>
+        <div>
           <div className="row d-flex justify-content-between">
             <div className="col-sm-12 col-md-6 p-0">
               <Button
-                className="adduser ms-3 p-1.8 btn-sm shadow"
+                className="adduser ms-3 p-1.8 btn-sm shadow-sm"
                 variant="outline"
                 onClick={() => navigate("/dashboard/clients/add")}
               >
@@ -73,13 +50,13 @@ const Client = () => {
               </Button>
               <Button
                 variant=""
-                className="activeuser mx-1 p-1.5  border-0 shadow"
+                className="activeuser mx-1 p-1.5  border-0 shadow-sm"
               >
                 Active
               </Button>
               <Button
                 variant=""
-                className="deleteuser border-0 p-1.5 shadow me-auto "
+                className="deleteuser border-0 p-1.5 shadow-sm me-auto "
               >
                 Deleted
               </Button>
@@ -93,35 +70,24 @@ const Client = () => {
                 onChange={(e) => setFilterText(e.target.value)}
               />
             </div>
-            {data.length > 0 ? (
-              <UserTable
-                data={data.filter((item) => {
-                  if (filterText !== "")
-                    return item.name
-                      .toLowerCase()
-                      .includes(filterText.toLowerCase());
-                  return item;
-                })}
-              />
-            ) : (
-              <h4 className="text-center mt-3">Data is Not Define....</h4>
-            )}
           </div>
-
-          {/* <TableComponent
-            data={data.filter((item) => {
-              if (filterText !== "")
-                return item.firstName
-                  .toLowerCase()
-                  .includes(filterText.toLowerCase());
-              return item;
-            })}
-            columns={columns}
-            handleSelectedRow={handleSelectedRow}
-          /> */}
-        </CardBody>
-      </Card>
-    </>
+          {data.length > 0 ? (
+            <ClientTable
+              data={data.filter((item) => {
+                if (filterText !== "")
+                  return item.name
+                    .toLowerCase()
+                    .includes(filterText.toLowerCase());
+                return item;
+              })}
+              setData={setData}
+            />
+          ) : (
+            <h4 className="text-center mt-3">Data is Not Define....</h4>
+          )}
+        </div>
+      </CardBody>
+    </Card>
   );
 };
 

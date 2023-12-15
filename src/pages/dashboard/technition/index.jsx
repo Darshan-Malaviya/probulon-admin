@@ -7,11 +7,11 @@ import {
 } from "react-bootstrap";
 import { IoMdAddCircle } from "react-icons/io";
 import {  toast } from 'react-toastify';
-import UserTable from "./UserTable";
+import TechnitionTable from "./TechnitionTable";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./index.css"
-const Users = () => {
+const Technician = () => {
   const [data, setData] = useState([]);
   const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
@@ -30,7 +30,7 @@ const Users = () => {
 
   return (
       <Card className="m-2 h-100 w-auto border">
-        <CardHeader className="fw-bold ps-3 ">Users</CardHeader>
+        <CardHeader className="fw-bold ps-3 ">Technician</CardHeader>
         <CardBody>
         <div>
           <div className="row d-flex justify-content-between">
@@ -38,10 +38,10 @@ const Users = () => {
             <Button
               className="adduser ms-3 p-1.8 btn-sm shadow-sm"
               variant="outline"
-              onClick={() => navigate("/dashboard/users/add")}
+              onClick={() => navigate("/dashboard/technician/add")}
             >
               <IoMdAddCircle className="fs-3" />{" "}
-              Create User 
+              Add Technician  
             </Button>
              <Button variant="" className="activeuser mx-1 p-1.5  border-0 shadow-sm">Active</Button>
               <Button variant="" className="deleteuser border-0 p-1.5 shadow-sm me-auto ">Deleted</Button>
@@ -57,8 +57,10 @@ const Users = () => {
            
             </div>
           </div>
-        {data.length > 0 ? (
-            <UserTable
+
+          </div>
+          {data.length > 0 ? (
+            <TechnitionTable
               data={data.filter((item) => {
                 if (filterText !== "")
                   return item.name
@@ -71,10 +73,9 @@ const Users = () => {
           ) : 
             <h4 className="text-center mt-3">Data is Not Valide....</h4>
           }
-          </div>
         </CardBody>
       </Card>
   );
 };
 
-export default Users;
+export default Technician;

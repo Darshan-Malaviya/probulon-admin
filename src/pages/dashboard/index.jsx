@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-
 import Sidebar from "../../components/sidebar";
 import NavBar from "../../components/navbar";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
 import Users from "./users";
 import Clients from "./clients";
 import Devices from "./devices";
+import Technician from "./technition";
 import { FaUsers, FaHome } from "react-icons/fa";
 import { BsHouseLockFill } from "react-icons/bs";
 import { RiFolderUserFill } from "react-icons/ri";
+import { FcBusinessman } from "react-icons/fc";
+import AddTechnitionSteper from "./technition/AddTechnitionSteper";
 import AddSteper from "./users/AddSteper";
 import AddClientSteper from "./clients/AddClientSteper";
+import AddDevicesSteper from "./devices/AddDevicesSteper";
 import "./index.css"
 const Dashboard = () => {
   const [path, setPath] = useState([]);
@@ -36,6 +39,12 @@ const Dashboard = () => {
       path: "/dashboard/devices",
       element: <Devices />,
     },
+    {
+      name:"Technition",
+      icon:<FcBusinessman />,
+      path:"/dashboard/technician",
+      element:<Technician/>,
+    }
   ];
   useEffect(() => {
     setPath(location.pathname.split("/").slice(2));
@@ -47,7 +56,7 @@ const Dashboard = () => {
         <Sidebar routes={routes} toggle={toggle} />
         <div className="d-flex flex-column w-100">
           <NavBar toggle={toggle} setToggle={setToggle} />
-          <div className="m-2 mt-4 card rounded-2">
+          <div className="m-2 mt-4 card rounded-2 shadow-sm">
             <nav aria-label="breadcrumb ">
               <ol className="d-flex justify-content-start align-content-center h-100 breadcrumb">
                 <li className="px-2 breadcrumb-item">
@@ -72,6 +81,9 @@ const Dashboard = () => {
             <Route path="/clients" element={<Clients />} />
             <Route path="/clients/add" element={<AddClientSteper />} />
             <Route path="/devices" element={<Devices />} />
+            <Route path="/devices/add" element={<AddDevicesSteper />} />
+            <Route path="/technician" element={<Technician />} />
+            <Route path="/technician/add" element={<AddTechnitionSteper  />} />
           </Routes>
         </div>
       </div>

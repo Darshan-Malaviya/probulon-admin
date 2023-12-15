@@ -7,15 +7,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import UserDetails from "./UpdateUsers/UserDetails";
-import UserId from "./UpdateUsers/UserId";
-import Other from "./UpdateUsers/Other";
+import TechnitionDetailsUpdate from "./UpdateTechnition/TechnitionDetailsUpdate";
+import TechnitionIdUpdate from "./UpdateTechnition/TechnitionIdUpdate";
+import Other from "./UpdateTechnition/Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
-const UserTable = ({ data ,setData}) => {
+const TechnitionTable = ({ data ,setData}) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
   const [updateuser, setUpdateuser] = useState();
@@ -235,12 +235,12 @@ const UserTable = ({ data ,setData}) => {
                         <Modal.Body>
                           <Form onSubmit={handleSubmit}>
                             {page === 0 ? (
-                              <UserDetails
+                              <TechnitionDetailsUpdate
                                 formik={formik}
                                 handleChange={handleChange}
                               />
                             ) : page === 1 ? (
-                              <UserId
+                              <TechnitionIdUpdate
                                 formik={formik}
                                 handleChange={handleChange}
                               />
@@ -315,4 +315,4 @@ const UserTable = ({ data ,setData}) => {
   );
 };
 
-export default UserTable;
+export default TechnitionTable;

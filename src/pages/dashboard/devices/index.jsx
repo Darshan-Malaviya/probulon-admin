@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalBody, Form } from "react-bootstrap";
-import TableComponent from "../../../components/table";
 import api from "../../../services/api";
 import swal from "../../../components/sweetAlert";
 import { IoMdAddCircle } from "react-icons/io";
-
+import DevicesTable from "./DevicesTable";
 import { useNavigate } from "react-router-dom";
 const Devices = () => {
   const [data, setData] = useState([]);
@@ -13,7 +12,7 @@ const Devices = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate()
   async function fetchData() {
-    const resData = await api.get("/devices/getAll");
+    const resData = await api.get("/users/getAll");
     if (resData.isSuccess) {
       setData(resData.data);
     } else swal.error(resData.message);
@@ -21,24 +20,7 @@ const Devices = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  const columns = [
-    {
-      name: "Name",
-      selector: (row) => row["name"],
-      sortable: true,
-    },
-    {
-      name: "Email",
-      selector: (row) => row["email"],
-      sortable: true,
-    },
-    {
-      name: "Status",
-      selector: (row) => row["status"],
-      sortable: true,
-      right: "true",
-    },
-  ];
+
 
   function handleSelectedRow(state) {
     setRow(state.selectedRows);
@@ -46,27 +28,21 @@ const Devices = () => {
 
   return (
     <>
-      <Modal show={show}>
-        <ModalHeader>Add New Device</ModalHeader>
-        <ModalBody>
-          
-        </ModalBody>
-      </Modal>
       <Card className="m-2 h-100 border">
-        <CardHeader>Devices</CardHeader>
+        <CardHeader className="fw-bold  ps-3">Devices</CardHeader>
         <CardBody>
         <div className="row d-flex justify-content-between">
             <div className="col-sm-12 col-md-6 p-0">
             <Button
-              className="adduser ms-3 p-1.8 btn-sm shadow"
+              className="adduser ms-3 p-1.8 btn-sm shadow-sm"
               variant="outline"
-              onClick={() => navigate("/dashboard/users/add")}
+              onClick={() => navigate("/dashboard/devices/add")}
             >
               <IoMdAddCircle className="fs-3" />{" "}
               Create Divices
             </Button>
-             <Button variant="" className="activeuser mx-1 p-1.5  border-0 shadow">Active</Button>
-              <Button variant="" className="deleteuser border-0 p-1.5 shadow me-auto ">Deleted</Button>
+             <Button variant="" className="activeuser mx-1 p-1.5 border-0 shadow-sm">Active</Button>
+              <Button variant="" className="deleteuser border-0  p-1.5 shadow-sm  me-auto ">Deleted</Button>
             </div>       
             <div className="col-sm-12 p-2 col-md-6 text-end p-0"> 
             <input 
@@ -79,17 +55,21 @@ const Devices = () => {
            
             </div>
           </div>
-          <TableComponent
-            data={data.filter((item) => {
-              if (filterText !== "")
-                return item.name
-                  .toLowerCase()
-                  .includes(filterText.toLowerCase());
-              return item;
-            })}
-            columns={columns}
-            handleSelectedRow={handleSelectedRow}
-          />
+          {data.length > 0 ? (
+            <DevicesTable
+              data={data.filter((item) => {
+                if (filterText !== "")
+                  return item.name
+                    .toLowerCase()
+                    .includes(filterText.toLowerCase());
+                return item;
+              })}
+              setData={setData}
+            />
+          ) : (
+            <h4 className="text-center mt-3">Data is Not Define....</h4>
+          )}
+       
         </CardBody>
       </Card>
     </>

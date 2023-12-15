@@ -2,32 +2,33 @@ import React, { useState } from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 import { Card, CardBody, Button, Modal } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import UserDetails from "./UpdateUsers/UserDetails";
-import UserId from "./UpdateUsers/UserId";
-import Other from "./UpdateUsers/Other";
+import ClientDetailsUpdate from "./UpdateClient/ClientDetailsUpdate";
+import ClientIdUpdate from "./UpdateClient/ClientIdUpdate";
+import Other from "./UpdateClient/Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
-import { useNavigate } from "react-router-dom";
-import "./index.css";
-const UserTable = ({ data ,setData}) => {
+const ClientTable = ({ data, setData }) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
-  const [updateuser, setUpdateuser] = useState();
+  const [updateclient, setUpdateclient] = useState();
   const navigate = useNavigate();
+
   const handleClose = () => setShow(false);
 
+  // Update Client function
   const handleShow = async (id) => {
     try {
-      const resData = await api.get(`/users/getById?userId=${id}`); //user get id for edit data
+      const resData = await api.get(`/users/getById?userId=${id}`);
       if (resData.isSuccess) {
-        console.log(resData.data, "-----getid");
-        setUpdateuser(resData.data);
+        console.log(resData); 
+        setUpdateclient(resData.data);
         setShow(true);
       } else toast.error(resData.message);
     } catch (error) {
@@ -36,12 +37,8 @@ const UserTable = ({ data ,setData}) => {
   };
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      clientId: "",
-      typeOfCollaborator: "",
-      position: "",
       name: "",
+      collaborator: "",
       surname: "",
       lastSurname: "",
       mobile: "",
@@ -49,7 +46,7 @@ const UserTable = ({ data ,setData}) => {
       email: "",
       secondaryEmail: "",
       taxStatus: "",
-      tipoDeDocument: "",
+      documentType: "",
       idNumber: "",
       postalCode: "",
       town: "",
@@ -60,27 +57,31 @@ const UserTable = ({ data ,setData}) => {
       deviceId: "",
       password: "",
       gender: "",
-      userType: "",
+      secondSupervisor: "",
+      thirdEmail: "",
+      supervisor: "",
+      technician: "",
+      timezone: "",
+      deviceStatus: "",
+      scheduleTime: "",
+      contactPerson: "",
+      address: "",
+      deviceNotes: "",
     },
     validationSchema: Yup.object({
-      firstName: Yup.string().required("First Name is required"),
-      lastName: Yup.string().required("LastName is required"),
-      clientId: Yup.string().required("ClientId is required"),
-      typeOfCollaborator: Yup.string().required(
-        "TypeOfCollaborator is required"
-      ),
-      position: Yup.string().required("Position is required"),
+      collaborator: Yup.number().optional(),
       name: Yup.string().required("Name is required"),
       surname: Yup.string().required("Surname is required"),
-      lastSurname: Yup.string().required("LastSurname is required"),
-      mobile: Yup.number().required("Mobile is required"),
-      secondaryMobile: Yup.number().required("SecondaryMobile is required"),
+      lastSurname: Yup.string().optional(),
+      mobile: Yup.string().required("Mobile is required"),
+      secondaryMobile: Yup.string().required("SecondaryMobile is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
       secondaryEmail: Yup.string()
         .email("Invalid email")
         .required("SecondaryEmail is required"),
-      taxStatus: Yup.string().required("TaxStatus is required"),
-      tipoDeDocument: Yup.string().required("TipoDeDocument is required"),
+
+      taxStatus: Yup.string().optional(),
+      documentType: Yup.number().required("documentType is required"),
       idNumber: Yup.string().required("IdNumber is required"),
       postalCode: Yup.string().required("PostalCode is required"),
       town: Yup.string().required("Town is required"),
@@ -88,42 +89,52 @@ const UserTable = ({ data ,setData}) => {
       country: Yup.string().required("country is required"),
       notes: Yup.string().required("notes is required"),
       taxAddress: Yup.string().required("taxAddress is required"),
-      deviceId: Yup.string().required("deviceId is required"),
+      deviceId: Yup.string().optional().min(24).max(24),
       password: Yup.string()
         .min(6, "Password is too short - should be 6 chars minimum")
         .required("password is required"),
       gender: Yup.string().required("gender is required"),
-      userType: Yup.string().required("userType is required"),
+      secondSupervisor: Yup.string().required("Second supervisor is required"),
+      thirdEmail: Yup.string()
+        .email("Invalid email format")
+        .required("Email is required"),
+      supervisor: Yup.string().required("Supervisor is required"),
+      technician: Yup.string().required("Technician is required"),
+      timezone: Yup.string().required("Timezone is required"),
+      deviceStatus: Yup.string().required("Device status is required"),
+      scheduleTime: Yup.string().required("Schedule time is required"),
+      contactPerson: Yup.string().required("Contact person is required"),
+      address: Yup.string().required("Address is required"),
+      deviceNotes: Yup.string().required("Device notes are required"),
     }),
     onSubmit: async (value) => {
-      console.log(value);
       try {
-        const resData = await api.put("/users/update", value);//user upadte api
+        const resData = await api.put("/users/update", value);
         console.log(resData);
         if (resData.isSuccess) {
-          toast.success("User Data Update SuccessFull");
-          navigate("/dashboard/users");
+          toast.success("Client Create SuccessFull");
+          navigate("/dashboard/clients");
         } else toast.error(resData.message);
       } catch (error) {
-        toast.error("User Data Not Update", error);
+        toast.error("User Data Not Add", error);
       }
     },
   });
   const { handleChange, handleSubmit } = formik;
 
+  // Delete Clients function
   const handleDelete = async (id) => {
     try {
-      const resData = await api.delete(`/users/delete?userId=${id}`);//delete user api call
+      const resData = await api.delete(`/users/delete?userId=${id}`);
       if (resData.isSuccess) {
-        setData(resData.data)
-        navigate("/dashboard/users");
+        const deletedata = data.filter((value) => value._id != id);
+        setData(deletedata);
+        navigate("/dashboard/clients");
       } else toast.error(resData.message);
     } catch (error) {
       toast.error(error);
     }
   };
-  const Formtitle = ["User Details", "User Device Informaion", "Other"];
-
   const handleNext = (e) => {
     e.preventDefault();
     const errors = Object.keys(formik.errors);
@@ -131,6 +142,7 @@ const UserTable = ({ data ,setData}) => {
 
     if (page === 0) {
       currentFields = [
+        "deviceId",
         "email",
         "lastSurname",
         "name",
@@ -147,13 +159,26 @@ const UserTable = ({ data ,setData}) => {
         "collaborator",
         "idNumber",
         "documentType",
-        "startDate",
         "postalCode",
         "country",
         "town",
+        "thirdEmail",
+        "notes",
+        "timezone",
+        "taxAddress",
       ];
     } else if (page === 2) {
-      currentFields = ["taxAddress", "notes", "timezone", "scheduleTime"];
+      currentFields = [
+        "province",
+        "secondSupervisor",
+        "supervisor",
+        "technician",
+        "deviceStatus",
+        "scheduleTime",
+        "contactPerson",
+        "address",
+        "deviceNotes",
+      ];
     }
 
     const hasErrors = currentFields.some((field) => errors.includes(field));
@@ -168,13 +193,15 @@ const UserTable = ({ data ,setData}) => {
   const handlePrev = () => {
     setPage((cur) => cur - 1);
   };
+  const Formtitle = ["Client Details", "Client Device Informaion", "Other"];
   return (
-    <Card className="shadow">
+    <Card className="shadow mt-3">
       <CardBody>
-        <div className="table-responsive ">
-          <table className="table  text-center table-hover ">
+        <div className="table-responsive">
+          <table className="table  text-center  table-hover ">
             <thead>
-              <tr>
+              {" "}
+              <tr role="row">
                 <th>#IdNumber</th>
                 <th>#Collaborator</th>
                 <th>#Name</th>
@@ -192,9 +219,10 @@ const UserTable = ({ data ,setData}) => {
               </tr>
             </thead>
             <tbody>
+              {" "}
               {data?.map((value, index) => {
                 return (
-                  <tr key={index}>
+                  <tr role="row" key={index}>
                     <td>{value.idNumber}</td>
                     <td>{value.collaborator}</td>
                     <td>{value.name}</td>
@@ -209,7 +237,7 @@ const UserTable = ({ data ,setData}) => {
                     <td>{value.taxStatusText}</td>
                     <td>
                       {value.statusText === "Active" ? (
-                        <Button className="btn btn-success btn-sm">
+                        <Button variant="" className="btn btn-success btn-sm">
                           {value.statusText}
                         </Button>
                       ) : (
@@ -219,6 +247,7 @@ const UserTable = ({ data ,setData}) => {
                       )}
                     </td>
                     <td className="d-flex text-center ">
+                      {" "}
                       <Button
                         variant=""
                         className="editicon   btn-sm fs-6"
@@ -227,6 +256,7 @@ const UserTable = ({ data ,setData}) => {
                         <BiSolidEdit className="icon fs-4" />{" "}
                       </Button>
                       <Modal show={show} onHide={handleClose}>
+                        {" "}
                         <Modal.Header closeButton>
                           <Modal.Title className="ms-2 fw-bold">
                             {Formtitle[page]}
@@ -234,13 +264,14 @@ const UserTable = ({ data ,setData}) => {
                         </Modal.Header>
                         <Modal.Body>
                           <Form onSubmit={handleSubmit}>
+                            {" "}
                             {page === 0 ? (
-                              <UserDetails
+                              <ClientDetailsUpdate
                                 formik={formik}
                                 handleChange={handleChange}
                               />
                             ) : page === 1 ? (
-                              <UserId
+                              <ClientIdUpdate
                                 formik={formik}
                                 handleChange={handleChange}
                               />
@@ -253,7 +284,11 @@ const UserTable = ({ data ,setData}) => {
                             <Button
                               variant="secondary"
                               className={
-                                page === 1 ? "ms-5 me-2 mt-2 " : "ms-4 mt-3"
+                                page === 1
+                                  ? "ms-5 me-2 mt-2 "
+                                  : page === 0
+                                  ? "ms-3 mt-3"
+                                  : "ms-5 me-2 mt-2 "
                               }
                               onClick={handleClose}
                             >
@@ -262,19 +297,20 @@ const UserTable = ({ data ,setData}) => {
                             {page === 0 ? null : (
                               <Button
                                 variant=""
-                                className="prevbutton mt-2 me-2 ms-3 "
+                                className="prevbutton mt-2 me-2 ms-3 ms-lg-3"
                                 type="button"
                                 onClick={() => handlePrev()}
                               >
                                 <GrFormPrevious /> Prev Form
                               </Button>
                             )}
+                            {console.log(page, page !== Formtitle.length - 1)}
                             {page !== Formtitle.length - 1 ? (
                               <Button
                                 variant=""
                                 className={
                                   page === 1
-                                    ? "nextbutton mt-2  "
+                                    ? "nextbutton mt-2   ms-lg-0 "
                                     : "nextbutton mt-3 ms-3 "
                                 }
                                 type="button"
@@ -286,7 +322,7 @@ const UserTable = ({ data ,setData}) => {
                             ) : (
                               <Button
                                 variant=""
-                                className="nextbutton mt-3 ms-2"
+                                className="nextbutton mt-2 ms-2"
                                 type="submit"
                               >
                                 {" "}
@@ -315,4 +351,4 @@ const UserTable = ({ data ,setData}) => {
   );
 };
 
-export default UserTable;
+export default ClientTable;
