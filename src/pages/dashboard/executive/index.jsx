@@ -7,18 +7,18 @@ import {
 } from "react-bootstrap";
 import { IoMdAddCircle } from "react-icons/io";
 import {  toast } from 'react-toastify';
-import TechnitionTable from "./TechnitionTable";
+import ExecutiveTable from "./TechnitionTable";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./index.css"
-const Technician = () => {
+const Executive = () => {
   const [data, setData] = useState([]);
   const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   async function fetchUser() {
-    const resData = await api.get("/users/getAll?type=8");
+    const resData = await api.get("/users/getAll?type=4");
     console.log(resData)
     if (resData.isSuccess) {
       setData(resData.data);
@@ -30,7 +30,7 @@ const Technician = () => {
 
   return (
       <Card className="m-2 h-100 w-auto border">
-        <CardHeader className="fw-bold ps-3 ">Technician</CardHeader>
+        <CardHeader className="fw-bold ps-3 ">Executive</CardHeader>
         <CardBody>
         <div>
           <div className="row d-flex justify-content-between">
@@ -38,10 +38,10 @@ const Technician = () => {
             <Button
               className="adduser ms-3 p-1.8 btn-sm shadow-sm"
               variant="outline"
-              onClick={() => navigate("/dashboard/technician/add")}
+              onClick={() => navigate("/dashboard/executive/add")}
             >
               <IoMdAddCircle className="fs-3" />{" "}
-              Create Technician  
+              Create Executive  
             </Button>
              <Button variant="" className="activeuser mx-1 p-1.5  border-0 shadow-sm">Active</Button>
               <Button variant="" className="deleteuser border-0 p-1.5 shadow-sm me-auto ">Deleted</Button>
@@ -60,7 +60,7 @@ const Technician = () => {
 
           </div>
           {data.length > 0 ? (
-            <TechnitionTable
+            <ExecutiveTable
               data={data.filter((item) => {
                 if (filterText !== "")
                   return item.name
@@ -78,4 +78,4 @@ const Technician = () => {
   );
 };
 
-export default Technician;
+export default Executive;

@@ -1,8 +1,19 @@
 import { Form, FloatingLabel } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import countryList from "react-select-country-list";
 
 const ClientId = ({ formik, handleChange }) => {
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    const countryData = countryList().getData();
+    const formattedCountries = countryData.map((country) => ({
+      value: country.label, 
+      label: country.label,
+    }));
+    setCountries(formattedCountries);  }, []);
   return (
-    <div className="ms-2">   //stepe - 2 form
+    <div className="ms-2">  
       <div className="row d-flex p-0 m-2 ">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
           {" "}
@@ -90,24 +101,31 @@ const ClientId = ({ formik, handleChange }) => {
           ) : null}
         </div>
       </div>
-
-      <div className="row d-flex p-0 m-2">
+      
+      <div className="row d-flex p-0 m-2 ">
         <div className="col-sm-12 col-md-3 ms-md-4 p-0">
           {" "}
           <Form.Label className="">Country :</Form.Label>
         </div>
         <div className="col-sm-12 col-md-6 col-lg-4 p-0">
-          <Form.Control
+          <Form.Select
             type="text"
             id="country"
-            placeholder="Enter Your Country"
             className="col-6"
             name="country"
             value={formik.values.country}
             onChange={handleChange}
             onBlur={formik.handleBlur}
-            required
-          />
+          >
+            <option value="">Select country</option>
+            {countries &&
+              countries.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+          </Form.Select>
+
           {formik.touched.country && formik.errors.country ? (
             <div className="error ms-2 text-danger">
               {formik.errors.country}

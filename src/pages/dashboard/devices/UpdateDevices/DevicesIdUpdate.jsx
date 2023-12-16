@@ -8,7 +8,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">SecondSupervisor:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="secondSupervisor"
@@ -32,7 +32,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Supervisor :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="supervisor"
@@ -56,7 +56,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">PostalCode :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="postalCode"
@@ -80,7 +80,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">ContactPerson :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="contactPerson"
@@ -104,7 +104,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Country :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="country"
@@ -128,7 +128,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Town :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="town"
@@ -150,7 +150,7 @@ const DevicesIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Local Time :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="time"
             id="localTime"

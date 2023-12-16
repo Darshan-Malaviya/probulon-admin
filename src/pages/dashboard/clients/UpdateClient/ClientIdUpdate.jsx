@@ -9,7 +9,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Collaborator :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="collaborator"
@@ -37,7 +37,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">TaxStatus :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="taxStatus"
@@ -70,7 +70,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">PostalCode :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="postalCode"
@@ -94,7 +94,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Country :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="country"
@@ -118,7 +118,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Town :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="town"
@@ -140,7 +140,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">DocumentType:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="documentType"
@@ -169,7 +169,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Id Number :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="idNumber"
@@ -193,7 +193,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">ThirdEmail :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="thirdEmail"
@@ -217,7 +217,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Notes :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel
             type="text"
             placeholder="Notes"
@@ -247,7 +247,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Timezone :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="timezone"
@@ -271,7 +271,7 @@ const ClientIdUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">TaxAddress :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel type="text" name="taxAddress" className=" ">
             <Form.Control
               as="textarea"

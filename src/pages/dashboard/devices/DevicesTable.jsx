@@ -14,19 +14,19 @@ import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
-const DevicesTable = ({ data ,setData}) => {
+const DevicesTable = ({ data, fetchData }) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
-  const [updateuser, setUpdateuser] = useState();
+  const [updatedevices, setUpdatedevices] = useState();
   const navigate = useNavigate();
   const handleClose = () => setShow(false);
 
   const handleShow = async (id) => {
     try {
-      const resData = await api.get(`/users/getById?userId=${id}`); //user get id for edit data
+      const resData = await api.get(`/devices/getById?deviceId=${id}`); //deviceId get  for edit data
       if (resData.isSuccess) {
         console.log(resData.data, "-----getid");
-        setUpdateuser(resData.data);
+        setUpdatedevices(resData.data);
         setShow(true);
       } else toast.error(resData.message);
     } catch (error) {
@@ -84,7 +84,7 @@ const DevicesTable = ({ data ,setData}) => {
     onSubmit: async (value) => {
       console.log(value);
       try {
-        const resData = await api.put("/devices/update", value);//user upadte api
+        const resData = await api.put("/devices/update", value); //user upadte api
         console.log(resData);
         if (resData.isSuccess) {
           toast.success("User Data Update SuccessFull");
@@ -99,9 +99,9 @@ const DevicesTable = ({ data ,setData}) => {
 
   const handleDelete = async (id) => {
     try {
-      const resData = await api.delete(`/devices/delete?userId=${id}`);//delete user api call
+      const resData = await api.delete(`/devices/delete?deviceId=${id}`); //delete user api call
       if (resData.isSuccess) {
-        setData(resData.data)
+        fetchData();
         navigate("/dashboard/devices");
       } else toast.error(resData.message);
     } catch (error) {
@@ -120,6 +120,7 @@ const DevicesTable = ({ data ,setData}) => {
         "email",
         "technician",
         "name",
+        "userId",
         "secondaryEmail",
         "secondaryMobile",
         "mobile",
@@ -164,18 +165,13 @@ const DevicesTable = ({ data ,setData}) => {
           <table className="table  text-center table-hover ">
             <thead>
               <tr>
-                <th>#IdNumber</th>
-                <th>#Collaborator</th>
                 <th>#Name</th>
-                <th>#Surname</th>
                 <th>#Email</th>
                 <th>#Country</th>
                 <th>#Town</th>
                 <th>#PostalCode</th>
-                <th>#TaxStatusText</th>
-                <th>#Gender</th>
                 <th>#Mobile</th>
-                <th>#TaxStatusText</th>
+                <th>#Status</th>
                 <th>#StatusText</th>
                 <th>#Action</th>
               </tr>
@@ -184,20 +180,15 @@ const DevicesTable = ({ data ,setData}) => {
               {data?.map((value, index) => {
                 return (
                   <tr key={index}>
-                    <td>{value.idNumber}</td>
-                    <td>{value.collaborator}</td>
                     <td>{value.name}</td>
-                    <td>{value.surname}</td>
                     <td>{value.email}</td>
                     <td>{value.country}</td>
                     <td>{value.town}</td>
                     <td>{value.postalCode}</td>
-                    <td>{value.taxStatusText}</td>
-                    <td>{value.gender}</td>
                     <td>{value.mobile}</td>
-                    <td>{value.taxStatusText}</td>
+                    <td>{value.status}</td>
                     <td>
-                      {value.statusText === "Active" ? (
+                      {value.statusText === "On" ? (
                         <Button className="btn btn-success btn-sm">
                           {value.statusText}
                         </Button>
@@ -211,80 +202,11 @@ const DevicesTable = ({ data ,setData}) => {
                       <Button
                         variant=""
                         className="editicon   btn-sm fs-6"
-                        onClick={() => handleShow(value._id)}
+                        onClick={() => handleShow(value.Id)}
                       >
                         <BiSolidEdit className="icon fs-4" />{" "}
                       </Button>
-                      <Modal show={show} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                          <Modal.Title className="ms-2 fw-bold">
-                            {Formtitle[page]}
-                          </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <Form onSubmit={handleSubmit}>
-                            {page === 0 ? (
-                              <DevicesDetailsUpdate
-                                formik={formik}
-                                handleChange={handleChange}
-                              />
-                            ) : page === 1 ? (
-                              <DevicesIdUpdate
-                                formik={formik}
-                                handleChange={handleChange}
-                              />
-                            ) : (
-                              <Other
-                                formik={formik}
-                                handleChange={handleChange}
-                              />
-                            )}
-                            <Button
-                              variant="secondary"
-                              className={
-                                page === 1 ? "ms-5 me-2 mt-2 " : "ms-4 mt-3"
-                              }
-                              onClick={handleClose}
-                            >
-                              Close
-                            </Button>
-                            {page === 0 ? null : (
-                              <Button
-                                variant=""
-                                className="prevbutton mt-2 me-2 ms-3 "
-                                type="button"
-                                onClick={() => handlePrev()}
-                              >
-                                <GrFormPrevious /> Prev Form
-                              </Button>
-                            )}
-                            {page !== Formtitle.length - 1 ? (
-                              <Button
-                                variant=""
-                                className={
-                                  page === 1
-                                    ? "nextbutton mt-2  "
-                                    : "nextbutton mt-3 ms-3 "
-                                }
-                                type="button"
-                                onClick={(e) => handleNext(e)}
-                              >
-                                {" "}
-                                Next Form <MdNavigateNext />
-                              </Button>
-                            ) : (
-                              <Button
-                                variant=""
-                                className="nextbutton mt-2 ms-2"
-                                type="submit"
-                              >
-                                {" "}
-                                Update
-                              </Button>
-                            )}
-                          </Form>
-                        </Modal.Body>
-                      </Modal>
+
                       <Button
                         variant=""
                         className="deleteicon  btn-sm fs-5 ms-2"
@@ -298,6 +220,69 @@ const DevicesTable = ({ data ,setData}) => {
               })}
             </tbody>
           </table>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title className="ms-2 fw-bold">
+                {Formtitle[page]}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={handleSubmit}>
+                {page === 0 ? (
+                  <DevicesDetailsUpdate
+                    formik={formik}
+                    handleChange={handleChange}
+                  />
+                ) : page === 1 ? (
+                  <DevicesIdUpdate
+                    formik={formik}
+                    handleChange={handleChange}
+                  />
+                ) : (
+                  <Other formik={formik} handleChange={handleChange} />
+                )}
+                <Button
+                  variant="secondary"
+                  className={page === 1 ? "ms-5 me-2 mt-2 " : "ms-4 mt-3"}
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+                {page === 0 ? null : (
+                  <Button
+                    variant=""
+                    className="prevbutton mt-2 me-2 ms-3 "
+                    type="button"
+                    onClick={() => handlePrev()}
+                  >
+                    <GrFormPrevious /> Prev Form
+                  </Button>
+                )}
+                {page !== Formtitle.length - 1 ? (
+                  <Button
+                    variant=""
+                    className={
+                      page === 1 ? "nextbutton mt-2  " : "nextbutton mt-3 ms-3 "
+                    }
+                    type="button"
+                    onClick={(e) => handleNext(e)}
+                  >
+                    {" "}
+                    Next Form <MdNavigateNext />
+                  </Button>
+                ) : (
+                  <Button
+                    variant=""
+                    className="nextbutton mt-2 ms-2"
+                    type="submit"
+                  >
+                    {" "}
+                    Update
+                  </Button>
+                )}
+              </Form>
+            </Modal.Body>
+          </Modal>
         </div>
       </CardBody>
     </Card>

@@ -6,11 +6,15 @@ import Users from "./users";
 import Clients from "./clients";
 import Devices from "./devices";
 import Technician from "./technition";
+import Executive from "./executive";
 import { FaUsers, FaHome } from "react-icons/fa";
 import { BsHouseLockFill } from "react-icons/bs";
 import { RiFolderUserFill } from "react-icons/ri";
 import { FcBusinessman } from "react-icons/fc";
+import { BsPersonCheckFill } from "react-icons/bs";
+import { BsPersonGear } from "react-icons/bs";
 import AddTechnitionSteper from "./technition/AddTechnitionSteper";
+import AddExecutiveSteper from "./executive/AddExecutiveSteper";
 import AddSteper from "./users/AddSteper";
 import AddClientSteper from "./clients/AddClientSteper";
 import AddDevicesSteper from "./devices/AddDevicesSteper";
@@ -41,9 +45,15 @@ const Dashboard = () => {
     },
     {
       name:"Technition",
-      icon:<FcBusinessman />,
+      icon:<BsPersonGear />,
       path:"/dashboard/technician",
       element:<Technician/>,
+    },
+    {
+      name:"Executive",
+      icon:<BsPersonCheckFill />,
+      path:"/dashboard/executive",
+      element:<Executive/>,
     }
   ];
   useEffect(() => {
@@ -53,10 +63,12 @@ const Dashboard = () => {
   return (
     <>
       <div className="d-flex flex-row mt-5 h-100 dashboard">
-        <Sidebar routes={routes} toggle={toggle} />
-        <div className="d-flex flex-column w-100">
+      <div className={`${toggle ? "col-2 d-flex flex-column " : ""}`}>
+        <Sidebar  routes={routes} toggle={toggle} />
+      </div>
+        <div className={`${toggle ? "col-10 d-flex flex-column  container":"col-12 d-flex flex-column "}`}>
           <NavBar toggle={toggle} setToggle={setToggle} />
-          <div className="m-2 mt-4 card rounded-2 shadow-sm">
+          <div className="m-2 mt-4 card rounded-2 shadow">
             <nav aria-label="breadcrumb ">
               <ol className="d-flex justify-content-start align-content-center h-100 breadcrumb">
                 <li className="px-2 breadcrumb-item">
@@ -84,6 +96,8 @@ const Dashboard = () => {
             <Route path="/devices/add" element={<AddDevicesSteper />} />
             <Route path="/technician" element={<Technician />} />
             <Route path="/technician/add" element={<AddTechnitionSteper  />} />
+            <Route path="/executive" element={<Executive />} />
+            <Route path="/executive/add" element={<AddExecutiveSteper  />} />
           </Routes>
         </div>
       </div>

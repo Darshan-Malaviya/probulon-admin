@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import Other from "./Other";
 import api from "../../../services/api";
 import { toast } from "react-toastify";
-const AddTechnitionSteper = () => {
+const AddExecutiveSteper = () => {
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
   const formik = useFormik({
@@ -73,26 +73,26 @@ const AddTechnitionSteper = () => {
       scheduleTime: Yup.string().required("Schedule time is required"),
     }),
     onSubmit: async (value) => {
-      const addtechnition = {
+      const addExecutive = {
         ...value,
-        userType: "8",
+        userType: "4",
       };
-      console.log(addtechnition);
+      console.log(addExecutive);
       try {
-        const resData = await api.post("/users/create", addtechnition);
+        const resData = await api.post("/users/create", addExecutive);
         console.log(resData);
         if (resData.isSuccess) {
-          toast.success("Technition Data Add SuccessFull");
-          navigate("/dashboard/technition");
+          toast.success("Executive Data Add SuccessFull");
+          navigate("/dashboard/executive");
         } else toast.error(resData.message);
       } catch (error) {
-        toast.error("Technition Data Not Add", error);
+        toast.error("Executive Data Not Add", error);
       }
     },
   });
   const { handleChange, handleSubmit } = formik;
 
-  const Formtitle = ["Technition Details", "Technition Informaion", "Other"];
+  const Formtitle = ["Executive Details", "Executive Informaion", "Other"];
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -198,4 +198,4 @@ const AddTechnitionSteper = () => {
   );
 };
 
-export default AddTechnitionSteper;
+export default AddExecutiveSteper;

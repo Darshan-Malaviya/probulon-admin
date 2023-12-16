@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from "react-bootstrap";
-import TableComponent from "../../../components/table";
+import { Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import api from "../../../services/api";
 // import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
@@ -16,24 +7,19 @@ import { IoMdAddCircle } from "react-icons/io";
 import ClientTable from "./ClientTable";
 const Client = () => {
   const [data, setData] = useState([]);
-  const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
-  async function fetchUser() {
-    const resData = await api.get("/users/getAll");
+  async function fetchClient() {
+    const resData = await api.get("/users/getAll?type=1");
     if (resData.isSuccess) {
       setData(resData.data);
     } else toast.error(resData.message);
   }
 
   useEffect(() => {
-    fetchUser();
+    fetchClient();
   }, []);
 
-  function handleSelectedRow(state) {
-    setRow(state.selectedRows);
-  }
   return (
     <Card className="m-2 h-100 border w-auto">
       <CardHeader className="fw-bold  ps-3">Client</CardHeader>
@@ -80,10 +66,10 @@ const Client = () => {
                     .includes(filterText.toLowerCase());
                 return item;
               })}
-              setData={setData}
+              fetchClient={fetchClient}
             />
           ) : (
-            <h4 className="text-center mt-3">Data is Not Define....</h4>
+            <h4 className="text-center mt-3">Loading....</h4>
           )}
         </div>
       </CardBody>

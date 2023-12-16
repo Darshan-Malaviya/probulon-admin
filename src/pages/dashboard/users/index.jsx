@@ -13,12 +13,10 @@ import { useNavigate } from "react-router-dom";
 import "./index.css"
 const Users = () => {
   const [data, setData] = useState([]);
-  const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   async function fetchUser() {
-    const resData = await api.get("/users/getAll");
+    const resData = await api.get("/users/getAll?type=2");
     console.log(resData)
     if (resData.isSuccess) {
       setData(resData.data);
@@ -29,7 +27,7 @@ const Users = () => {
   }, []);
 
   return (
-      <Card className="m-2 h-100 w-auto border">
+      <Card className="m-2 h-100 border">
         <CardHeader className="fw-bold ps-3 ">Users</CardHeader>
         <CardBody>
         <div>
@@ -65,7 +63,7 @@ const Users = () => {
                     .toLowerCase()
                     .includes(filterText.toLowerCase());
                 return item;
-              })} setData={setData}
+              })} fetchUser={fetchUser}
             
             />
           ) : 

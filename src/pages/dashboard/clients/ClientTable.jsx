@@ -14,7 +14,7 @@ import Other from "./UpdateClient/Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
-const ClientTable = ({ data, setData }) => {
+const ClientTable = ({ data, fetchClient }) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
   const [updateclient, setUpdateclient] = useState();
@@ -27,7 +27,7 @@ const ClientTable = ({ data, setData }) => {
     try {
       const resData = await api.get(`/users/getById?userId=${id}`);
       if (resData.isSuccess) {
-        console.log(resData); 
+        console.log(resData);
         setUpdateclient(resData.data);
         setShow(true);
       } else toast.error(resData.message);
@@ -37,7 +37,7 @@ const ClientTable = ({ data, setData }) => {
   };
   const formik = useFormik({
     initialValues: {
-      name: "",
+      name: updateclient?.name,
       collaborator: "",
       surname: "",
       lastSurname: "",
@@ -127,8 +127,7 @@ const ClientTable = ({ data, setData }) => {
     try {
       const resData = await api.delete(`/users/delete?userId=${id}`);
       if (resData.isSuccess) {
-        const deletedata = data.filter((value) => value._id != id);
-        setData(deletedata);
+        fetchClient();
         navigate("/dashboard/clients");
       } else toast.error(resData.message);
     } catch (error) {
@@ -255,83 +254,6 @@ const ClientTable = ({ data, setData }) => {
                       >
                         <BiSolidEdit className="icon fs-4" />{" "}
                       </Button>
-                      <Modal show={show} onHide={handleClose}>
-                        {" "}
-                        <Modal.Header closeButton>
-                          <Modal.Title className="ms-2 fw-bold">
-                            {Formtitle[page]}
-                          </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                          <Form onSubmit={handleSubmit}>
-                            {" "}
-                            {page === 0 ? (
-                              <ClientDetailsUpdate
-                                formik={formik}
-                                handleChange={handleChange}
-                              />
-                            ) : page === 1 ? (
-                              <ClientIdUpdate
-                                formik={formik}
-                                handleChange={handleChange}
-                              />
-                            ) : (
-                              <Other
-                                formik={formik}
-                                handleChange={handleChange}
-                              />
-                            )}
-                            <Button
-                              variant="secondary"
-                              className={
-                                page === 1
-                                  ? "ms-5 me-2 mt-2 "
-                                  : page === 0
-                                  ? "ms-3 mt-3"
-                                  : "ms-5 me-2 mt-2 "
-                              }
-                              onClick={handleClose}
-                            >
-                              Close
-                            </Button>
-                            {page === 0 ? null : (
-                              <Button
-                                variant=""
-                                className="prevbutton mt-2 me-2 ms-3 ms-lg-3"
-                                type="button"
-                                onClick={() => handlePrev()}
-                              >
-                                <GrFormPrevious /> Prev Form
-                              </Button>
-                            )}
-                            {console.log(page, page !== Formtitle.length - 1)}
-                            {page !== Formtitle.length - 1 ? (
-                              <Button
-                                variant=""
-                                className={
-                                  page === 1
-                                    ? "nextbutton mt-2   ms-lg-0 "
-                                    : "nextbutton mt-3 ms-3 "
-                                }
-                                type="button"
-                                onClick={(e) => handleNext(e)}
-                              >
-                                {" "}
-                                Next Form <MdNavigateNext />
-                              </Button>
-                            ) : (
-                              <Button
-                                variant=""
-                                className="nextbutton mt-2 ms-2"
-                                type="submit"
-                              >
-                                {" "}
-                                Update
-                              </Button>
-                            )}
-                          </Form>
-                        </Modal.Body>
-                      </Modal>
                       <Button
                         variant=""
                         className="deleteicon  btn-sm fs-5 ms-2"
@@ -345,6 +267,77 @@ const ClientTable = ({ data, setData }) => {
               })}
             </tbody>
           </table>
+          <Modal show={show} onHide={handleClose}>
+            {" "}
+            <Modal.Header closeButton>
+              <Modal.Title className="ms-2 fw-bold">
+                {Formtitle[page]}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={handleSubmit}>
+                {" "}
+                {page === 0 ? (
+                  <ClientDetailsUpdate
+                    formik={formik}
+                    handleChange={handleChange}
+                  />
+                ) : page === 1 ? (
+                  <ClientIdUpdate formik={formik} handleChange={handleChange} />
+                ) : (
+                  <Other formik={formik} handleChange={handleChange} />
+                )}
+                <Button
+                  variant="secondary"
+                  className={
+                    page === 1
+                      ? "ms-5 me-2 mt-2 "
+                      : page === 0
+                      ? "ms-3 mt-3"
+                      : "ms-5 me-2 mt-2 "
+                  }
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+                {page === 0 ? null : (
+                  <Button
+                    variant=""
+                    className="prevbutton mt-2 me-2 ms-3 ms-lg-3"
+                    type="button"
+                    onClick={() => handlePrev()}
+                  >
+                    <GrFormPrevious /> Prev Form
+                  </Button>
+                )}
+                {console.log(page, page !== Formtitle.length - 1)}
+                {page !== Formtitle.length - 1 ? (
+                  <Button
+                    variant=""
+                    className={
+                      page === 1
+                        ? "nextbutton mt-2   ms-lg-0 "
+                        : "nextbutton mt-3 ms-3 "
+                    }
+                    type="button"
+                    onClick={(e) => handleNext(e)}
+                  >
+                    {" "}
+                    Next Form <MdNavigateNext />
+                  </Button>
+                ) : (
+                  <Button
+                    variant=""
+                    className="nextbutton mt-2 ms-2"
+                    type="submit"
+                  >
+                    {" "}
+                    Update
+                  </Button>
+                )}
+              </Form>
+            </Modal.Body>
+          </Modal>
         </div>
       </CardBody>
     </Card>

@@ -7,7 +7,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Province :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="province"
@@ -31,7 +31,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">SecondSupervisor:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="secondSupervisor"
@@ -55,7 +55,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Supervisor :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="supervisor"
@@ -79,7 +79,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Technician :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="technician"
@@ -103,7 +103,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">DeviceStatus :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="deviceStatus"
@@ -132,7 +132,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">ScheduleTime :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="time"
             id="scheduleTime"
@@ -155,7 +155,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">ContactPerson :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="contactPerson"
@@ -179,7 +179,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Address :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel type="text" name="address" className=" ">
             <Form.Control
               as="textarea"
@@ -206,7 +206,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">DeviceNotes :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel
             type="text"
             placeholder="DeviceNotes"

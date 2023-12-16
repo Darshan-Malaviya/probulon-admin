@@ -7,15 +7,15 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { MdNavigateNext } from "react-icons/md";
 import { GrFormPrevious } from "react-icons/gr";
-import UserDetails from "./UpdateUsers/UserDetails";
-import UserId from "./UpdateUsers/UserId";
-import Other from "./UpdateUsers/Other";
+import TechnitionDetailsUpdate from "./UpdateTechnition/TechnitionDetailsUpdate";
+import TechnitionIdUpdate from "./UpdateTechnition/TechnitionIdUpdate";
+import Other from "./UpdateTechnition/Other";
 import { toast } from "react-toastify";
 import swal from "../../../components/sweetAlert";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
-const UserTable = ({ data ,fetchUser}) => {
+const TechnitionTable = ({ data ,setData}) => {
   const [page, setPage] = useState(0);
   const [show, setShow] = useState(false);
   const [updateuser, setUpdateuser] = useState();
@@ -115,8 +115,8 @@ const UserTable = ({ data ,fetchUser}) => {
     try {
       const resData = await api.delete(`/users/delete?userId=${id}`);//delete user api call
       if (resData.isSuccess) {
-        fetchUser()
-       navigate("/dashboard/users");
+        setData(resData.data)
+        navigate("/dashboard/users");
       } else toast.error(resData.message);
     } catch (error) {
       toast.error(error);
@@ -226,21 +226,7 @@ const UserTable = ({ data ,fetchUser}) => {
                       >
                         <BiSolidEdit className="icon fs-4" />{" "}
                       </Button>
-                      
-                      <Button
-                        variant=""
-                        className="deleteicon  btn-sm fs-5 ms-2"
-                        onClick={() => handleDelete(value._id)}
-                      >
-                        <MdDelete className="fs-4" />
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          <Modal show={show} onHide={handleClose}>
+                      <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                           <Modal.Title className="ms-2 fw-bold">
                             {Formtitle[page]}
@@ -249,12 +235,12 @@ const UserTable = ({ data ,fetchUser}) => {
                         <Modal.Body>
                           <Form onSubmit={handleSubmit}>
                             {page === 0 ? (
-                              <UserDetails
+                              <TechnitionDetailsUpdate
                                 formik={formik}
                                 handleChange={handleChange}
                               />
                             ) : page === 1 ? (
-                              <UserId
+                              <TechnitionIdUpdate
                                 formik={formik}
                                 handleChange={handleChange}
                               />
@@ -310,10 +296,23 @@ const UserTable = ({ data ,fetchUser}) => {
                           </Form>
                         </Modal.Body>
                       </Modal>
+                      <Button
+                        variant=""
+                        className="deleteicon  btn-sm fs-5 ms-2"
+                        onClick={() => handleDelete(value._id)}
+                      >
+                        <MdDelete className="fs-4" />
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </CardBody>
     </Card>
   );
 };
 
-export default UserTable;
+export default TechnitionTable;

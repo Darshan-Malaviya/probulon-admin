@@ -7,7 +7,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">ThirdEmail :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="thirdEmail"
@@ -31,7 +31,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Province :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="province"
@@ -55,7 +55,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Fault :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="fault"
@@ -77,7 +77,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Status :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="status"
@@ -104,7 +104,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Address :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel type="text" name="address" className=" ">
             <Form.Control
               as="textarea"
@@ -131,7 +131,7 @@ const Other = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Notes :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel
             type="text"
             placeholder="Notes"

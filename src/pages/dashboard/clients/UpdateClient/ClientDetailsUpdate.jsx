@@ -7,7 +7,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className=""> Name :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="name"
@@ -30,7 +30,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Surname :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="surname"
@@ -54,7 +54,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">LastSurname :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="lastSurname"
@@ -78,7 +78,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Mobile :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="mobile"
@@ -100,7 +100,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">SecondaryMobile:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="secondaryMobile"
@@ -125,7 +125,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Email :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="email"
@@ -148,7 +148,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">SecondaryEmail:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="secondaryEmail"
@@ -173,7 +173,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label>Password :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="password"
             id="password"
@@ -197,7 +197,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">DeviceId :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="deviceId"
@@ -221,7 +221,7 @@ const ClientDetailsUpdate = ({ formik, handleChange }) => {
           {" "}
           <Form.Label className="">Gender :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-7 ms-5 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="gender"
