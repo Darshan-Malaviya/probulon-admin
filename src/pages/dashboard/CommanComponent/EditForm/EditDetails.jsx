@@ -1,13 +1,13 @@
 import { Form } from "react-bootstrap";
-const TechnitionDetails = ({ formik, handleChange }) => {
+const EditDetails = ({ formik, handleChange }) => {
   return (
     <div className="ms-2">
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className=""> Name :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="name"
@@ -27,11 +27,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Surname :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="surname"
@@ -52,11 +52,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">LastSurname :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="lastSurname"
@@ -77,11 +77,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Mobile :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="mobile"
@@ -100,11 +100,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
-          <Form.Label className="">secondaryMobile :</Form.Label>
+          <Form.Label className="">secondaryMobile:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="secondaryMobile"
@@ -125,11 +125,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Email :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="email"
@@ -148,11 +148,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
-          <Form.Label className="">SecondaryEmail :</Form.Label>
+          <Form.Label className="">SecondaryEmail:</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="secondaryEmail"
@@ -173,11 +173,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label>Password :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6  col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="password"
             id="password"
@@ -223,11 +223,11 @@ const TechnitionDetails = ({ formik, handleChange }) => {
       </div> */}
 
       <div className="row d-flex p-0 m-2 ">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Gender :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Select
             type="text"
             id="gender"
@@ -251,8 +251,38 @@ const TechnitionDetails = ({ formik, handleChange }) => {
         </div>
       </div>
 
+      {/* <div className="row d-flex p-0 m-2 ">
+        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+          {" "}
+          <Form.Label className="">UserType :</Form.Label>
+        </div>
+        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+          <Form.Select
+            type="text"
+            id="userType"
+            placeholder="Enter Your Surname"
+            className="col-6"
+            name="userType"
+            value={formik.values.userType}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            required
+          >
+            <option value="">Select UserType</option>
+            <option value="1">Client</option>
+            <option value="2">User</option>
+            <option value="3">Admin</option>
+          </Form.Select>
+
+          {formik.touched.userType && formik.errors.userType ? (
+            <div className="error ms-2 text-danger">
+              {formik.errors.userType}
+            </div>
+          ) : null}
+        </div>
+      </div> */}
     </div>
   );
 };
 
-export default TechnitionDetails;
+export default EditDetails;

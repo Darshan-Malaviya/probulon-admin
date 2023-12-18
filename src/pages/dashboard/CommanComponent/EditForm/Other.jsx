@@ -4,11 +4,11 @@ const Other = ({ formik, handleChange }) => {
     <div className="ms-2">
 
 <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">ThirdEmail :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="email"
             id="thirdEmail"
@@ -146,11 +146,11 @@ const Other = ({ formik, handleChange }) => {
       </div> */}
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">Timezone :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="text"
             id="timezone"
@@ -201,11 +201,11 @@ const Other = ({ formik, handleChange }) => {
 
       
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">ScheduleTime :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <Form.Control
             type="time"
             id="scheduleTime"
@@ -225,11 +225,11 @@ const Other = ({ formik, handleChange }) => {
       </div>
 
       <div className="row d-flex p-0 m-2">
-        <div className="col-sm-12 col-md-3 ms-md-4 p-0">
+        <div className="col-sm-12 col-md-3 ms-md-1 p-0">
           {" "}
           <Form.Label className="">TaxAddress :</Form.Label>
         </div>
-        <div className="col-sm-12 col-md-6 col-lg-4 p-0">
+        <div className="col-sm-12 col-md-6 col-lg-7 ms-sm-0 ms-md-5 p-0">
           <FloatingLabel type="text" name="taxAddress" className=" ">
             <Form.Control
               as="textarea"

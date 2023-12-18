@@ -8,6 +8,11 @@ import ClientTable from "./ClientTable";
 const Client = () => {
   const [data, setData] = useState([]);
   const [filterText, setFilterText] = useState("");
+  const [clientdata,setClientdata]=useState({
+    CardHeader:"Clients",
+    Backevent_PATH:"/dashboard/clients/add",
+    CreateClient:"Create Clients"
+  })
   const navigate = useNavigate();
   async function fetchClient() {
     const resData = await api.get("/users/getAll?type=1");
@@ -22,7 +27,7 @@ const Client = () => {
 
   return (
     <Card className="m-2 h-100 border w-auto">
-      <CardHeader className="fw-bold  ps-3">Client</CardHeader>
+      <CardHeader className="fw-bold  ps-3">{clientdata.CardHeader}</CardHeader>
       <CardBody>
         <div>
           <div className="row d-flex justify-content-between">
@@ -30,9 +35,9 @@ const Client = () => {
               <Button
                 className="adduser ms-3 p-1.8 btn-sm shadow-sm"
                 variant="outline"
-                onClick={() => navigate("/dashboard/clients/add")}
+                onClick={() => navigate(`${clientdata.Backevent_PATH}`)}
               >
-                <IoMdAddCircle className="fs-3" /> Create Client
+                <IoMdAddCircle className="fs-3" /> {clientdata.CreateClient}
               </Button>
               <Button
                 variant=""
