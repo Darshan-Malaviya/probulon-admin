@@ -1,0 +1,66 @@
+.adduser{
+    color: rgb(255, 255, 255);
+    background-color: rgb(46, 46, 63);
+    height: 40px;
+}
+.adduser:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(46, 46, 63);
+}
+.editicon{
+    color: rgb(255, 255, 255);
+    background-color:rgb(46, 46, 63);
+    border-radius: 50%;
+}
+.editicon:hover{
+    color: rgb(46, 46, 63);
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+}
+.deleteicon{
+    color: rgb(255, 255, 255);
+    background-color: #a43131;
+    border-radius: 50%;
+}
+.deleteicon:hover{
+    color: #a43131;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+.activeuser{
+    color: #ffffff;
+    background-color: #598234;
+}
+.activeuser:hover{
+    color: #ffffff;
+    background-color: #598234;
+}
+.deleteuser{
+    color: #ffffff;
+    background-color: #a43131;
+}
+.deleteuser:hover{
+    color: #ffffff;
+    background-color: #a43131;
+}
+.prevbutton{
+    color: #ffffff;
+    background-color: #a43131;
+}
+.nextbutton{
+    color: #ffffff;
+    background-color: rgb(46, 46, 63);
+    
+}
+.nextbutton:hover{
+    color: #ffffff;
+    background-color: rgb(46, 46, 63);
+    
+}
+.searchInput {
+    border: none;
+    border-bottom: 1px solid black; /* Change the color as needed */
+    width: 80%; /* Adjust width as needed */
+    font-size: 1.2em; /* Adjust font size as needed */
+    padding-bottom: 5px;
+  }

@@ -3,161 +3,75 @@ import {
   Card,
   CardHeader,
   CardBody,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
+  Button, 
 } from "react-bootstrap";
 import { IoMdAddCircle } from "react-icons/io";
-
-import TableComponent from "../../../components/table";
+import {  toast } from 'react-toastify';
 import UserTable from "./UserTable";
-
 import api from "../../../services/api";
-import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
-
+import "./index.css"
 const Users = () => {
   const [data, setData] = useState([]);
-  const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
-  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   async function fetchUser() {
-    const resData = await api.get("http://79.143.90.196/api/v1/users/getAll");
+    const resData = await api.get("/users/getAll?type=2");
+    console.log(resData)
     if (resData.isSuccess) {
-      swal.success(resData.message);
       setData(resData.data);
-    } else swal.error(resData.message);
+    } else toast.error(resData.message);
   }
   useEffect(() => {
     fetchUser();
   }, []);
-  // const columns = [
-  //   {
-  //     name: "Name",
-  //     selector: (row) => row["firstName"],
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "Email",
-  //     selector: (row) => row["email"],
-  //     sortable: true,
-  //   },
-  //   {
-  //     name: "LastName",
-  //     selector: (row) => row["lastName"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "FirstName",
-  //     selector: (row) => row["firstName"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "PositionText",
-  //     selector: (row) => row["positionText"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "SecondaryEmail",
-  //     selector: (row) => row["secondaryEmail"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "StatusText",
-  //     selector: (row) => row["statusText"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "StatusText",
-  //     selector: (row) => row["statusText"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "StatusText",
-  //     selector: (row) => row["statusText"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  //   {
-  //     name: "StatusText",
-  //     selector: (row) => row["statusText"],
-  //     sortable: true,
-  //     right: "true",
-  //   },
-  // ];
-
-  // function handleSelectedRow(state) {
-  //   setRow(state.selectedRows);
-  // }
 
   return (
-    <>
-      <Modal show={show}>
-        <ModalHeader>Add New User</ModalHeader>
-        <ModalBody></ModalBody>
-      </Modal>
       <Card className="m-2 h-100 border">
-        <CardHeader className="fw-bold">Users</CardHeader>
+        <CardHeader className="fw-bold ps-3 ">Users</CardHeader>
         <CardBody>
-          <div className="d-flex flex-row justify-content-between ">
-            <input
-              className="outline-none col-6 rounded-2 border-1px px-2 "
-              type="text"
-              placeholder="Filter Users..."
-              value={filterText}
-              onChange={(e) => setFilterText(e.target.value)}
-            />
-            <div>
-              <Button className="bg-success mx-2 border-0">Active</Button>
-              <Button className="bg-danger border-0">Deleted</Button>
-            </div>
-
+        <div>
+          <div className="row d-flex justify-content-between">
+            <div className="col-sm-12 col-md-6 p-0">
             <Button
-              className="float-end btn  btn-primary"
+              className="adduser ms-3 p-1.8 btn-sm shadow-sm"
               variant="outline"
               onClick={() => navigate("/dashboard/users/add")}
             >
               <IoMdAddCircle className="fs-3" />{" "}
-              <span className="fw-medium">Create User </span>
+              Create User 
             </Button>
+             <Button variant="" className="activeuser mx-1 p-1.5  border-0 shadow-sm">Active</Button>
+              <Button variant="" className="deleteuser border-0 p-1.5 shadow-sm me-auto ">Deleted</Button>
+            </div>       
+            <div className="col-sm-12 p-2 col-md-6 text-end p-0"> 
+            <input 
+              className="searchInput px-3 pt-1 fs-5 col-lg-10 rounded-5 ps-3 shadow-sm"
+              type="search" 
+              placeholder="Search..."
+              value={filterText} 
+              onChange={(e) => setFilterText(e.target.value)}
+            />
+           
+            </div>
           </div>
-
-          {data.length !== 0 ? (
+        {data.length > 0 ? (
             <UserTable
               data={data.filter((item) => {
                 if (filterText !== "")
-                  return item.firstName
+                  return item.name
                     .toLowerCase()
                     .includes(filterText.toLowerCase());
                 return item;
-              })}
+              })} fetchUser={fetchUser}
+            
             />
-          ) : (
-            <h4 className="text-center m-3">Data is Not Define....</h4>
-          )}
-          {/* <TableComponent
-            data={data.filter((item) => {
-              if (filterText !== "")
-                return item.firstName
-                  .toLowerCase()
-                  .includes(filterText.toLowerCase());
-              return item;
-            })}
-            columns={columns}
-            handleSelectedRow={handleSelectedRow}
-          /> */}
+          ) : 
+            <h4 className="text-center mt-3">Data is Not Valide....</h4>
+          }
+          </div>
         </CardBody>
       </Card>
-    </>
   );
 };
 

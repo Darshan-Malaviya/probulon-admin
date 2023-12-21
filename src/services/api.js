@@ -6,7 +6,6 @@ const instance = axios.create({
     "Content-Type": "application/json",
   },
 });
-
 const api = {
   get: async (endpoint, params = {}) => {
     try {

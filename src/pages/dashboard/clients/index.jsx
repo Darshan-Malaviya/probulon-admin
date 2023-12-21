@@ -1,88 +1,85 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardHeader, CardBody, Button, Modal, ModalHeader, ModalBody, Form } from "react-bootstrap";
-import TableComponent from "../../../components/table";
+import { Card, CardHeader, CardBody, Button } from "react-bootstrap";
 import api from "../../../services/api";
-import swal from "../../../components/sweetAlert";
+// import swal from "../../../components/sweetAlert";
 import { useNavigate } from "react-router-dom";
+import { IoMdAddCircle } from "react-icons/io";
+import ClientTable from "./ClientTable";
 const Client = () => {
   const [data, setData] = useState([]);
-  const [row, setRow] = useState([]);
   const [filterText, setFilterText] = useState("");
-  const [show, setShow] = useState(false);
-  const navigate = useNavigate()
-  async function fetchUser() {
-    const resData = await api.get("/users/getAll");
+  const [clientdata,setClientdata]=useState({
+    CardHeader:"Clients",
+    Backevent_PATH:"/dashboard/clients/add",
+    CreateClient:"Create Clients"
+  })
+  const navigate = useNavigate();
+  async function fetchClient() {
+    const resData = await api.get("/users/getAll?type=1");
     if (resData.isSuccess) {
       setData(resData.data);
-    } else swal.error(resData.message);
+    } else toast.error(resData.message);
   }
+
   useEffect(() => {
-    fetchUser();
+    fetchClient();
   }, []);
-  const columns = [
-    {
-      name: "Name",
-      selector: (row) => row["firstName"],
-      sortable: true,
-    },
-    {
-      name: "Email",
-      selector: (row) => row["email"],
-      sortable: true,
-    },
-    {
-      name: "LastName",
-      selector: (row) => row["lastName"],
-      sortable: true,
-      right: "true",
-    },
-  ];
 
-  function handleSelectedRow(state) {
-    setRow(state.selectedRows);
-  }
   return (
-    <>
-      <Modal show={show}>
-        <ModalHeader>Add New Client</ModalHeader>
-        <ModalBody>
-          
-        </ModalBody>
-      </Modal>
-      <Card className="m-2 h-100 border">
-        <CardHeader className="fw-bold">Client</CardHeader>
-        <CardBody>
-          <div className="d-flex flex-row justify-content-between ">
-            <input
-              className="outline-none col-6 rounded-2 border-1px px-2"
-              type="text"
-              placeholder="Filter Clients..."
-              value={filterText}
-              onChange={(e) => setFilterText(e.target.value)}
-            />
-            <div>
-              <Button className="bg-success mx-2 border-0">Active</Button>
-              <Button className="bg-danger border-0">Deleted</Button>
+    <Card className="m-2 h-100 border w-auto">
+      <CardHeader className="fw-bold  ps-3">{clientdata.CardHeader}</CardHeader>
+      <CardBody>
+        <div>
+          <div className="row d-flex justify-content-between">
+            <div className="col-sm-12 col-md-6 p-0">
+              <Button
+                className="adduser ms-3 p-1.8 btn-sm shadow-sm"
+                variant="outline"
+                onClick={() => navigate(`${clientdata.Backevent_PATH}`)}
+              >
+                <IoMdAddCircle className="fs-3" /> {clientdata.CreateClient}
+              </Button>
+              <Button
+                variant=""
+                className="activeuser mx-1 p-1.5  border-0 shadow-sm"
+              >
+                Active
+              </Button>
+              <Button
+                variant=""
+                className="deleteuser border-0 p-1.5 shadow-sm me-auto "
+              >
+                Deleted
+              </Button>
             </div>
-            <Button className="float-end" onClick={() => navigate('/dashboard/clients/add')}>
-              Add Client
-            </Button>
+            <div className="col-sm-12 p-2 col-md-6 text-end p-0">
+              <input
+                className="input outline-none fs-5 col-lg-10 rounded-3 border-1px px-2 shadow-sm"
+                type="search"
+                placeholder="Filter Users..."
+                value={filterText}
+                onChange={(e) => setFilterText(e.target.value)}
+              />
+            </div>
           </div>
-          <TableComponent
-            data={data.filter((item) => {
-              if (filterText !== "")
-                return item.firstName
-                  .toLowerCase()
-                  .includes(filterText.toLowerCase());
-              return item;
-            })}
-            columns={columns}
-            handleSelectedRow={handleSelectedRow}
-          />
-        </CardBody>
-      </Card>
-    </>
+          {data.length > 0 ? (
+            <ClientTable
+              data={data.filter((item) => {
+                if (filterText !== "")
+                  return item.name
+                    .toLowerCase()
+                    .includes(filterText.toLowerCase());
+                return item;
+              })}
+              fetchClient={fetchClient}
+            />
+          ) : (
+            <h4 className="text-center mt-3">Loading....</h4>
+          )}
+        </div>
+      </CardBody>
+    </Card>
   );
-}
+};
 
-export default Client
+export default Client;
