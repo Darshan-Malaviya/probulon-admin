@@ -21,7 +21,7 @@ const Devices = () => {
 
   return (
     <>
-      <Card className="m-2 h-100 border">
+      <Card className="m-2 border">
         <CardHeader className="fw-bold  ps-3">Devices</CardHeader>
         <CardBody>
           <div className="row d-flex justify-content-between">

@@ -46,7 +46,7 @@ const Dashboard = () => {
       element: <Devices />,
     },
     {
-      name:"Technition",
+      name:"Technician",
       icon:<BsPersonGear />,
       path:"/dashboard/technician",
       element:<Technician/>,
@@ -59,18 +59,19 @@ const Dashboard = () => {
     }
   ];
   useEffect(() => {
+    
     setPath(location.pathname.split("/").slice(2));
   }, [location.pathname]);
   console.log(locale)
   return (
     <>
-      <div className="d-flex flex-row mt-5 h-100 dashboard">
-      <div className={`${toggle ? "col-2 d-flex flex-column " : ""}`}>
+      <div className="d-flex flex-row mt-5 dashboard h-100 ">
+      <div className={`${toggle ? "col-2 d-flex flex-column bg-light" : ""}`}>
         <Sidebar  routes={routes} toggle={toggle} />
       </div>
-        <div className={`${toggle ? "col-10 d-flex flex-column  container":"col-12 d-flex flex-column "}`}>
+        <div className={`${toggle ? "col-10 d-flex flex-column  container overflow-y-scroll ":"col-12 d-flex flex-column overflow-y-scroll"}`}>
           <NavBar toggle={toggle} setToggle={setToggle} />
-          <div className="m-2 mt-4 card rounded-2 shadow">
+          <div className="m-2 mt-4 card rounded-2 shadow ">
             <nav aria-label="breadcrumb ">
               <ol className="d-flex justify-content-start align-content-center h-100 breadcrumb">
                 <li className="px-2 breadcrumb-item">
