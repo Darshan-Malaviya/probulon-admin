@@ -19,14 +19,16 @@ import AddSteper from "./users/AddSteper";
 import AddClientSteper from "./clients/AddClientSteper";
 import AddDevicesSteper from "./devices/AddDevicesSteper";
 import "./index.css"
+import { useSelector } from "react-redux";
 const Dashboard = () => {
   const [path, setPath] = useState([]);
   const [toggle, setToggle] = useState(false);
   const location = useLocation();
-
+  const locale = useSelector((state)=> state.locale)
+  console.log(locale.locale.Client)
   const routes = [
     {
-      name: "Clients",
+      name: locale.locale.Clients,
       icon: <RiFolderUserFill />,
       path: "/dashboard/clients",
       element: <Clients />,
@@ -59,7 +61,7 @@ const Dashboard = () => {
   useEffect(() => {
     setPath(location.pathname.split("/").slice(2));
   }, [location.pathname]);
-
+  console.log(locale)
   return (
     <>
       <div className="d-flex flex-row mt-5 h-100 dashboard">
@@ -81,6 +83,7 @@ const Dashboard = () => {
                       className="text-decoration-none fw-bold breadcrumb-item-color"
                     >
                       {item}
+                   
                     </NavLink>
                   </li>
                 ))}

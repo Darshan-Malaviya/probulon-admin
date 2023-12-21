@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import styled from "styled-components";
 function Sidebar({ routes, toggle }) {
   const location = useLocation();
 
@@ -9,7 +10,7 @@ function Sidebar({ routes, toggle }) {
   };
 
   return (
-    <div style={{backgroundColor:"rgb(46, 46, 63)"}} className={`sidebar border h-100 shadow-lg  ${!toggle ? 'd-none' : ''}`}>
+    <div style={{backgroundColor:"rgb(46, 46, 63)"}} className={` sidebar border  h-100 shadow-lg pos ${!toggle ? 'd-none' : ""}`}>
       <div className="sidebar-wrapper">
         <div 
         style={{color:"white"}} 
